@@ -1,0 +1,22 @@
+{
+  "name": "genius_vyfork",
+  "version": "1.0.0",
+  "description": "geniusIdeaVyFork",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-gap-band/geniusidea.git"
+  },
+  "author": "The Gap Band",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/the-gap-band/geniusidea/issues"
+  },
+  "homepage": "https://github.com/the-gap-band/geniusidea#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
