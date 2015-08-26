@@ -178,8 +178,6 @@ no problem getting your changes merged in.
 
 [Bookstrap]: https://github.com/[[ telegraphacademy ]]/bookstrap
 
-[Taser]: https://github.com/[[ telegraphacademy ]]/bookstrap
-
 [tools workflow diagram]: http://i.imgur.com/kzlrDj7.png
 
 [Git Flow]: http://nvie.com/posts/a-successful-git-branching-model/
