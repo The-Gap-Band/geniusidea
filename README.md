@@ -37,7 +37,7 @@ Once the project moves into development, the press release can be used as a touc
   > People who strive to improve themselves need two things: a support group and a way to track their progress 
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem. Allows user to find support and new solutions through building community 
+  > Allows user to find support and new solutions through building community 
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
