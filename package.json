@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npm run test-server",
     "start": "node index.js",
-    "test-server": "mocha -R spec ./spec/serverSpec.js"
+    "test-server": "mocha -R spec ./spec/serverSpec.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,5 @@
     "gulp-eslint": "^1.0.0",
     "gulp-open": "^1.0.0",
     "react": "^0.13.3"
-
   }
 }
