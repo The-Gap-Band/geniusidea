@@ -16,7 +16,10 @@
     "url": "https://github.com/the-gap-band/geniusidea/issues"
   },
   "homepage": "https://github.com/the-gap-band/geniusidea#readme",
+  
   "dependencies": {
-    "express": "^4.13.3"
+    "chai": "^3.2.0",
+    "express": "^4.13.3",
+    "mocha": "^2.2.5"
   }
 }
