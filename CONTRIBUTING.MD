@@ -138,7 +138,7 @@ else, just repeat again.
 
 Thanks for contributing!
 
-### Guidelines
+### Guidelines  
 
 1. Uphold the current code standard:
     - Keep your code [DRY][].
