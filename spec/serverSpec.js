@@ -16,12 +16,12 @@ describe('SERVER', function() {
       });
     });
 
-    // it('should respond to GET requests for "/songs" with a 200 status code', function(done) {
-    //   request('http://127.0.0.1:3000/songs', function(error, response, body) {
-    //     expect(response.statusCode).to.equal(200);
-    //     done();
-    //   });
-    // });
+    it('should respond to GET requests for "/profile" with a 200 status code', function(done) {
+      request('http://localhost:3000', function(error, response, body) {
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
 
     // xit('should respond to GET requests for "/song" with a 200 status code', function(done) {
     //   request('http://127.0.0.1:3000/song', function(error, response, body) {
