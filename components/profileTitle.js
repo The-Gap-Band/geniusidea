@@ -4,4 +4,4 @@ var ProfileTitle = React.createClass({
 	}
 })
 
-React.render(<ProfileTitle name="Albrey Brown"/>, document.getElementById("name"))
+React.render(<ProfileTitle name="Robert Sylvester Kelly"/>, document.getElementById("name"))
