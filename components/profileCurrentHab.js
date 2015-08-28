@@ -1,15 +1,18 @@
 var ProfileCurrentHab = React.createClass({
 
   render: function() {
-    console.log('hellooooooo')
     var results = this.props.list;
     return (
-      <ol>
-        {results.map(function(result) {
-          console.log('key for list item :', <li key={result.id}>{result}</li>)
-          return <li key={result.id}>{result}</li>;
-        })}
-      </ol>
+      <div>
+        <thead>Check in for todays goals</thead>
+        <tr>
+          {results.map(function(result) {
+            console.log('result',result)
+            return <td key={result.id}> {result} </td>;
+          })}
+        </tr>
+      </div>
+      
     );
   }
 });
@@ -33,3 +36,4 @@ React.render(<ProfileCurrentHab list={["Become the best rapper alive","Learn Jav
 
 
 
+        // 
