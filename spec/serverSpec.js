@@ -23,8 +23,9 @@ describe('SERVER', function() {
       });
     });
 
-    xit('should respond to GET requests for "/" with a 200 status code', function(done) {
-      request('http://127.0.0.1:3000/song', function(error, response, body) {
+    xit('should send back parsable stringified JSON', function(done) {
+      request('', function(error, response, body) {
+        var req = 
         expect(response.statusCode).to.equal(200);
         done();
       });
