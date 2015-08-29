@@ -4,7 +4,6 @@ var ProfileNameLoc = React.createClass({
       <div>
         <h1>ProfileName: {this.props.name}</h1>
         <p>{this.props.location}</p>
-
       </div>)
 	}
 })
