@@ -2,10 +2,10 @@
   "name": "genius_vyfork",
   "version": "1.0.0",
   "description": "geniusIdeaVyFork",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "npm run test-server",
-    "start": "node index.js",
+    "start": "node app.js",
     "test-server": "mocha -R spec ./spec/serverSpec.js"
   },
   "repository": {
