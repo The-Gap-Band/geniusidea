@@ -13,8 +13,7 @@ var ProfileAddHab = React.createClass({
     e.preventDefault();
     console.log('Inside addItem function');
 
-    // Need to figure out how get value of input
-    // and make an AJAX call with input as JSON input
+
   },
   render: function() {
     var value = this.state.value;

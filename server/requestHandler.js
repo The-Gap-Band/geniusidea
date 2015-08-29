@@ -1,20 +1,22 @@
 module.exports = function(app){
-  // needs to take in the users input
-  // 
+
   app.route('/api/profile')
   .get(function(req, res){
-    res.send('');
+    // data from database will be the second param
+    res.send(200, 'Success');
   });
 
   app.route('/api/addHabit')
-  .post(function(req, res){
-    var habit = req.body;
-
+  .post(function(req,res){
+    
+    res.send(201, 'Success');
+   
   });
 
   app.route('/api/updateHabit')
+  // data to send to database will be the second param
   .post(function(req, res){
-    
+    res.send(201, 'Success');
   });
 
-} 
+}
