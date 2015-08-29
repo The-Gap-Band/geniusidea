@@ -6,6 +6,7 @@ var path = require('path');
 var requestHandler = require('./server/requestHandler.js')(app);
 var parser = require('body-parser');
 var port = process.env.PORT || '3000';
+var pg = require('pg');
 //========================================================//
 //   connecting the client and server                     //
 //   allows for CORS (cross origin resource sharing)      //
@@ -33,22 +34,22 @@ app.get('/profile', function(req, res) {
 //========================================================//
 //   Database Routes                                      //
 //========================================================//
-
-app.post('/profile/habit', function(req, res){
-//   pg.connect(connectionString, function(err, client, done){
-//     var query = client.query('SELECT text, vote FROM topics');
-//     var rows = []; // Array to hold values returned from database
-//     if (err) {
-//       return console.error('error running query', err);
-//     }
-//     query.on('row', function(row) {
-//       rows.push(row);
-//     });
-//     query.on('end', function(result) {
-//       client.end();
-//       return res.json(rows);
-//     });
-//   });
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/postgres';
+app.post('/profile/', function(req, res){
+  pg.connect(connectionString, function(err, client, done){
+    // var query = client.query('SELECT text, vote FROM topics');
+    // var rows = []; // Array to hold values returned from database
+    // if (err) {
+    //   return console.error('error running query', err);
+    // }
+    // query.on('row', function(row) {
+    //   rows.push(row);
+    // });
+    // query.on('end', function(result) {
+    //   client.end();
+    //   return res.json(rows);
+    // });
+  });
 });
 
 //========================================================//
