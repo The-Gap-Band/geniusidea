@@ -18,14 +18,14 @@ var config = {
  devBaseUrl: 'http://localhost',
  paths: {
    //want any html files in src directory to be matched
-   html: './src/*.html', 
-   js: './src/**/*.js',
-   css: [
-     'node_modules/bootstrap/dist/css/bootstrap.min.css',
-     'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
-   ],
-   dist: './dist', 
-   appJs: './src/app.js'
+   html: '*.html', 
+   js: './**/*.js',
+   // css: [
+   //   'node_modules/bootstrap/dist/css/bootstrap.min.css',
+   //   'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+   // ],
+   dist: './dist',
+   appJs: 'app.js'
  }
 }
 
@@ -81,13 +81,13 @@ gulp.task('js', function() {
 })
 
 //create our css task
-gulp.task('css', function() {
- gulp.src(config.paths.css)
-   //our goal is to have one bundled css file to save http requests
-   .pipe(concat('bundle.css'))
-   //drop that file under dist folder in css directory
-   .pipe(gulp.dest(config.paths.dist + '/css'));
-});
+// gulp.task('css', function() {
+//  gulp.src(config.paths.css)
+//    //our goal is to have one bundled css file to save http requests
+//    .pipe(concat('bundle.css'))
+//    //drop that file under dist folder in css directory
+//    .pipe(gulp.dest(config.paths.dist + '/css'));
+// });
 
 gulp.task('lint', function() {
  return gulp.src(config.paths.js)
@@ -105,4 +105,4 @@ gulp.task('watch', function() {
 
 //default task will run an array of tasks by default
  //when you type 'gulp' into the command line it will run these tasks
-gulp.task('default', ['html', 'js', 'css', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'lint', 'open', 'watch']);
