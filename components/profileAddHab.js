@@ -4,26 +4,27 @@ var ProfileAddHab = React.createClass({
   },
   handleChange: function(event) {
     this.setState({value: event.target.value});
-    console.log('value :',value)
+    console.log('value: ', this.state.value);
   },
   clear: function(event){
-    this.setState({value: null});
+    this.setState({value: ''});
   },
-  foo: function(e){
+  addItem: function(e){
     e.preventDefault();
-    console.log('HELLOOOOOOOOOOOOOOOOO')
+    console.log('Inside addItem function');
+
+    // Need to figure out how get value of input
+    // and make an AJAX call with input as JSON input
   },
   render: function() {
     var value = this.state.value;
     return (
       <div>
-        <form onSubmit={this.foo}><input type="text" value={value} onChange={this.handleChange} onClick={this.clear} id="user_input"/>
-        <button type="button">Enter Habitude</button></form>
+        <form onSubmit={this.addItem}><input type="text" value={value} onChange={this.handleChange} onClick={this.clear} id="user_input"/>
+        <button>Enter Habitude</button></form>
       </div>
     );
   }
 });
 
 React.render(<ProfileAddHab />, document.getElementById("addhab"))
-
-
