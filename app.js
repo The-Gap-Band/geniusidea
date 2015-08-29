@@ -23,13 +23,13 @@ app.use(express.static(path.normalize(__dirname + '/')));
 //   Routes                                               //
 //========================================================//
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
-  // res.send('HELLOOOOOO GAP BAND');
-});
+// app.get('/', function(req, res) {
+//   res.sendFile(path.join(__dirname + '/index.html'));
+//   // res.send('HELLOOOOOO GAP BAND');
+// });
 
 app.get('/profile', function(req, res) {
-  // res.sendFile(path.join(__dirname + '/profile.html'));
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 //========================================================//
