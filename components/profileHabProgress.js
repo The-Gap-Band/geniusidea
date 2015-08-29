@@ -2,7 +2,7 @@ var ProfileHabProgress = React.createClass({
   render: function() {
     var results = this.props.habitudes;
     return (
-      <div><h3>Check in for todays goals</h3>
+      <div><h3>Habits in Progress</h3>
         <ul>
           {results.map(function(result) {
             return <li key={result.id}>{result}</li>;
