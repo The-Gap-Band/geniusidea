@@ -5,7 +5,8 @@ module.exports = {
     return new Promise(function(success, error){
       $.ajax({
         url: url,
-        dataType: 'json',
+        type: 'GET',
+        contentType: 'application/json',
         success: success,
         error: error
       });
@@ -16,7 +17,9 @@ module.exports = {
     return new Promise(function(success, error){
       $.ajax({
         url: url,
+        type: 'POST',
         dataType: 'json',
+        contentType: 'application/json'
         data: data,
         success: success,
         error: error
