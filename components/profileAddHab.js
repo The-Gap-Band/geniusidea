@@ -15,9 +15,9 @@ var ProfileAddHab = React.createClass({
   addItem: function(e){
     e.preventDefault();
     
-    this.props.habitsArr.push({newHabit: this.state.value})
+    this.props.habitsObj.newHabit = this.state.value;
     // console.log('this.state.value :',this.state.value);
-    console.log('habitsArr : ',this.props.habitsArr);
+    console.log('habitsArr : ',this.props.habitsObj);
     // helper.post('/api/addHabit',e);
     console.log('Inside addItem function');
     // Need to figure out how get value of input
@@ -36,7 +36,7 @@ var ProfileAddHab = React.createClass({
   }
 });
 
-React.render(<ProfileAddHab habitsArr={[]}/>, document.getElementById("addhab"))
+React.render(<ProfileAddHab habitsObj={{}}/>, document.getElementById("addhab"))
 
 
 
