@@ -1,5 +1,6 @@
 var $ = require('jquery');
 
+
 // module.exports = {
 //   get: function(url){
 //     return new Promise(function(success, error){
@@ -30,3 +31,4 @@ var $ = require('jquery');
   //   });
   // };
 // }  
+
