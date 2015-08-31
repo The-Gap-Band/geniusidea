@@ -2,8 +2,7 @@ module.exports = function(app){
 
   app.route('/api/profile')
   .get(function(req, res){
-    // data from database will be the second param
-    res.send(200, 'Success');
+    res.send(res);
   });
 
   app.route('/api/addHabit')
