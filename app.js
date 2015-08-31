@@ -6,8 +6,7 @@ var path = require('path');
 // var requestHandler = require('./server/requestHandler.js')(app);
 var bodyParser = require('body-parser');
 var port = process.env.PORT || '3000';
-var pg = require('pg');
-// var db = require('./server/db.js');
+var db = require('./server/db.js')(app);
 //========================================================//
 //   connecting the client and server                     //
 //   allows for CORS (cross origin resource sharing)      //
@@ -28,29 +27,8 @@ app.use(express.static(path.normalize(__dirname + '/')));
  //========================================================//
 //   Routes                                               //
 //========================================================//
-app.get('/profile', function(req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
-});
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/postgres';
 
-app.get('/api/profile', function(req, res){
-   pg.connect(connectionString, function(err, client, done){
-    var query = client.query('SELECT * from users');
-    var rows = []; // Array to hold values returned from database
-    if (err) {
-      return console.error('error running query', err);
-    }
-    query.on('row', function(row) {
-      rows.push(row);
-    });
-    query.on('end', function(result) {
-      client.end();
-      // return res.json(rows);
-      return 'cats';
-    });
-  });
-});
 //========================================================//
 //   Calling the server                                   //
 //========================================================//
