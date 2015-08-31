@@ -71,5 +71,5 @@ var ImageCollect = React.createClass({
 
     React.render(
     <ImageCollect source="https://www.reddit.com/r/pics/top/.json" />,
-      document.getElementById('content')
+      document.body
     );
