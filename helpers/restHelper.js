@@ -10,9 +10,8 @@ module.exports = {
         success: success,
         error: error
       });
-    });
+    },
   },
-
   post: function(url, data){
     return new Promise(function(success, error){
       $.ajax({
@@ -24,6 +23,6 @@ module.exports = {
         success: success,
         error: error
       });
-    });
-  };
-}  
+    };
+  }
+}

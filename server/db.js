@@ -28,7 +28,7 @@ app.post('/api/addHabit', function(req, res){
 
 app.post('/api/updateHabit', function(req, res){
   pg.connect(connectionString, function(err, client, done){
-
+})
 });
 
 module.exports = db;
