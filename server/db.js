@@ -62,11 +62,12 @@ app.get('/api/habits', function(req, res){
 // USER CREATES A NEW HABIT
 app.post('/api/habits', function(req, res){
   var habit = req.body.habit;
+  console.log('habit', habit)
   pg.connect(connectionString, function(err, client, done){
     var query = client.query("INSERT INTO habits (user_id, habit) VALUES ($1, $2)", [1, habit]);
 
     /* VY TESTING THE POST QUERY-ING */
-    // var query = client.query("INSERT INTO habits (user_id, habit) VALUES (3, 'BRAND SPANKIN NEW HABIT')");
+    // var query = client.query("INSERT INTO habits (user_id, habit) VALUES (3, 'NUMERO TRES')");
 
 
 
