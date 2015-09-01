@@ -9,6 +9,7 @@ module.exports = function(app){
   //   Establish Database Connection                        //
   //========================================================//
 /*Change the database name from kmerino to you local machine's name*/
+
   var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/kmerino';
 
   //========================================================//
@@ -72,9 +73,21 @@ app.post('/api/habits', function(req, res){
 });
 
 // USER UPDATES HABITS
-// app.post('/api/updateHabit', function(req, res){
-//   pg.connect(connectionString, function(err, client, done){
-
-
-// });
+app.post('/api/updateHabit', function(req, res){
+  var update = req.body.update;
+  pg.connect(connectionString, function(err, client, done){
+    var query = client.query("QUERY GOES HERE");
+    var rows = [];
+    if (err) {
+      return console.error('error running query', err);
+    }
+    query.on('row', function(row) {
+      rows.push(row);
+    });
+    query.on('end', function(result) {
+      client.end();
+      return res.json(rows);
+    });
+  });
+});
 }
