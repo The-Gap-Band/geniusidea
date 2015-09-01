@@ -1,7 +1,14 @@
 var pg = require('pg');
 var request = require("request"); // You might need to npm install the request module!
 var expect = require('../../node_modules/chai/chai').expect;
+/*
+ITEMS TO TEST FOR IN DATABASE
+-Connection established to Postgres server
+-Habits are inserted into correct place
+-Habits are given to client when request
 
+The code below is an example from Shortly-Express. You can use this as a template to establish a connection to the db when testing.... or you can toss this out.
+*/
 describe("Persistent Postgres Connection", function() {
   var dbConnection;
 
