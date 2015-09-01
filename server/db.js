@@ -9,7 +9,7 @@ module.exports = function(app){
   //   Establish Database Connection                        //
   //========================================================//
 /*Change the database name from kmerino to you local machine's name*/
-  var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/kmerino';
+  var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/postgres';
 
   //========================================================//
   //   Database Queries                                     //
@@ -29,7 +29,7 @@ module.exports = function(app){
       query.on('end', function(result) {
         client.end();
         return res.json(rows);      
-      });
+      });   
     });
   });
 
@@ -77,4 +77,4 @@ app.post('/api/habits', function(req, res){
 
 
 // });
-}
+};
