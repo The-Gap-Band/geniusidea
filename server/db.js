@@ -8,6 +8,7 @@ module.exports = function(app){
   //========================================================//
   //   Establish Database Connection                        //
   //========================================================//
+/*Change the database name from kmerino to you local machine's name*/
   var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/kmerino';
 
   //========================================================//
@@ -34,8 +35,8 @@ module.exports = function(app){
 
 // SHOWS EXISTING USER HABITS
 app.get('/api/habits', function(req, res){
-   pg.connect(connectionString, function(err, client, done){
-    var query = client.query('SELECT user_id, habit from habits');
+ pg.connect(connectionString, function(err, client, done){
+  var query = client.query('SELECT user_id, habit from habits');
     var rows = []; // Array to hold values returned from database
     if (err) {
       return console.error('error running query', err);
