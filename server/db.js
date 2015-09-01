@@ -3,7 +3,7 @@ module.exports = function(app){
 //========================================================//
 //   Database Routes                                      //
 //========================================================//
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/kmerino';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
 
 app.get('/api/profile', function(req, res){
    pg.connect(connectionString, function(err, client, done){
