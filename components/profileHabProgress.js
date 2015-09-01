@@ -1,59 +1,36 @@
-// var ProfileHabProgress = React.createClass({
-//   render: function() {
-//     var results = this.props.habitudes;
-//     return (
-//       <div><h3>Habits in Progress</h3>
-//         <ul>
-//           {results.map(function(result) {
-//             return <li key={result.id}>{result}</li>;
-//           })}
-//         </ul>
-//       </div>
-//     );
-//   }
-// })
-
-// React.render(<ProfileHabProgress habitudes={['12/30 day streak',"29/30 day streak","7/30 day streak"]} />, document.getElementById("habprogress"))
-
 var ProfileHabProgress = React.createClass({
-  getInitialState: function() {
+  getInitialState: function() { // setting initial state to an empty string
     return {
       hab: ''
     };
   },
 
   componentDidMount: function() {
-    // console.log('this.props : ',this.props)
-    // console.log('habitudes : ',this.props.habitudes)
-    // console.log('this. state : ', this.state)
     $.get(this.props.habitudes, function(result) {
-      // console.log('result',result)
-      this.setState({hab : result});
-      // console.log('thing ', thing)
-      // console.log('this.state.hab inside didmount',this.state.hab);
-
+      this.setState({hab : result}); // setting the current state to the result of the db-query
     }.bind(this));
   },
 
   render: function() {
-    var habList = this.state.hab;
+    var habList = this.state.hab; // capturing the current state and saving in an array
     console.log('habList',habList)
     
     for (var i = 0; i < habList.length; i++) {
       // if (typeof habList[i] !== 'string'){
 
-        this.props.example.push(habList[i])
+        this.props.habitudesInProgress.push(habList[i]); // iterating through array of db data and putting into a props, habitudesInProgress' so it can be in scope, see habitudesInProgress defined as empty array in render call
+
       // }  
     };  
 
-    console.log('this.props.example',this.props.example)
+    console.log('this.props.habitudesInProgress',this.props.habitudesInProgress)
 
     return (
    
       <div>
         <h3>Habits in Progress</h3>
           <ul>
-            {this.props.example.map(function(obj) {
+            {this.props.habitudesInProgress.map(function(obj) { // iterating through db-data to render to Habits in Progress section of profile
             console.log('obj-------',obj.habit)
               return <li key={obj.id}>{obj.habit}</li>;
             })}
@@ -63,16 +40,8 @@ var ProfileHabProgress = React.createClass({
     );
   }
 })
-        // <ul>{habList.map(function(obj) {
-        //     return <li key={obj.id}>{obj.habit}</li>;
-        //   })}</ul>
 
-
-
-
-
-
-React.render(<ProfileHabProgress example={[]} habitudes={'http://localhost:3000/api/habits'} />, document.getElementById("habprogress"))
+React.render(<ProfileHabProgress habitudesInProgress={[]} habitudes={'http://localhost:3000/api/habits'} />, document.getElementById("habprogress"))
 
 
 
