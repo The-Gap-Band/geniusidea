@@ -33,12 +33,4 @@ describe('SERVER', function() {
     
   });
 
-  describe('Habits', function(){
-    
-  });
-
-  describe('', function(){
-
-  });
-
 });
