@@ -39,6 +39,7 @@ var ProfileAddHab = React.createClass({
     };
     console.log('this.props.foo',this.props.foo)
     console.log('this.props.habitsObj.newHabit',this.props.habitsObj.newHabit)
+    //posting to the cirtual DOM!
     return (
       <div>
         <h1>{this.props.habitsObj.newHabit}</h1>
