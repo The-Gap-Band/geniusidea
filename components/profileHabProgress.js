@@ -18,7 +18,7 @@
 var ProfileHabProgress = React.createClass({
   getInitialState: function() {
     return {
-      hab: 'Dadadadadadada'
+      hab: ''
     };
   },
 
@@ -36,30 +36,29 @@ var ProfileHabProgress = React.createClass({
   },
 
   render: function() {
-    // console.log('this.state.hab',this.state.hab)
-    // var results = this.state.hab;
-    // console.log('thing2 :',this.habitudes)
     var habList = this.state.hab;
     console.log('habList',habList)
     
     for (var i = 0; i < habList.length; i++) {
-      if (typeof habList[i] !== 'string'){
+      // if (typeof habList[i] !== 'string'){
 
         this.props.example.push(habList[i])
-      }  
+      // }  
     };  
-    console.log('this.props.example',this.props.example)
 
+    console.log('this.props.example',this.props.example)
 
     return (
    
-   <div>
-      <h3>Habits in Progress</h3>
-        <ul>{this.props.example.map(function(obj) {
-          console.log('obj-------',obj.habit)
-          return <li key={obj.id}>{obj.habit}</li>;
-        })}</ul>
-    </div>
+      <div>
+        <h3>Habits in Progress</h3>
+          <ul>
+            {this.props.example.map(function(obj) {
+            console.log('obj-------',obj.habit)
+              return <li key={obj.id}>{obj.habit}</li>;
+            })}
+          </ul>
+      </div>
        
     );
   }
