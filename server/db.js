@@ -5,22 +5,20 @@ module.exports = function(app){
 //========================================================//
 //   Database Routes                                      //
 //========================================================//
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:false}));
-  
+
+//========================================================//
+//   Establish Database Connection                        //
+//========================================================//
+/*Change the database name to your local machine's name*/
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
 
 
-  //========================================================//
-  //   Establish Database Connection                        //
-  //========================================================//
-/*Change the database name from kmerino to you local machine's name*/
-
-
-  //========================================================//
-  //   Database Queries                                     //
-  //========================================================//
+//========================================================//
+//   Database Queries                                     //
+//========================================================//
 
   // SHOWS USER PROFILE
   app.get('/api/profile', function(req, res){
@@ -65,11 +63,6 @@ app.post('/api/habits', function(req, res){
   console.log('habit', habit)
   pg.connect(connectionString, function(err, client, done){
     var query = client.query("INSERT INTO habits (user_id, habit) VALUES ($1, $2)", [1, habit]);
-
-    /* VY TESTING THE POST QUERY-ING */
-    // var query = client.query("INSERT INTO habits (user_id, habit) VALUES (3, 'NUMERO TRES')");
-
-
 
     var rows = []; // Array to hold values returned from database
     if (err) {
