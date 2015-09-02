@@ -102,9 +102,18 @@ module.exports = function(app){
 
   // USER UPDATES HABITS
   app.post('/api/updateHabit', function(req, res){
-    var update = req.body.update;
+    var habit = req.body.habit;
     pg.connect(connectionString, function(err, client, done){
-      var query = client.query("INSERT INTO updates (habit_id) VALUES ($1)", [1]);
+      
+      // Posts an update to the 'updates' table where the habit_id matches that of the input habit string
+      // CURL COMMAND: curl -X POST -d "habit='biking'" localhost:3000/api/updateHabit
+      // will update the 'biking' habit
+      var getIDQuery = "(SELECT DISTINCT updates.habit_id FROM habits " + 
+                       "INNER JOIN updates ON habits.habit_id = updates.habit_id " + 
+                       "WHERE habits.habit = " + habit + ")";
+
+      var query = client.query("INSERT INTO updates (habit_id) " +
+                               "VALUES (" + getIDQuery + ")");
       var rows = [];
       if (err) {
         return console.error('error running query', err);
