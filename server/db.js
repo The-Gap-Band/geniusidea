@@ -9,14 +9,11 @@ module.exports = function(app){
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:false}));
 
-
-
-  //========================================================//
-  //   Establish Database Connection                        //
-  //========================================================//
-  /*Change the database name from kmerino to you local machine's name*/
-  var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/postgres';
-
+//========================================================//
+//   Establish Database Connection                        //
+//========================================================//
+/*Change the database name to your local machine's name*/
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/kmerino';
 
   //========================================================//
   //   Database Queries                                     //

@@ -51,7 +51,7 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
   render: function() {
     return (
       <div className="habitBox">
-        <h1>Current Habitssss</h1>
+        <h1>Current Habits</h1>
         <HabitList data={this.state.data} />
         <HabitForm onHabitSubmit={this.handleHabitSubmit} />
       </div>
