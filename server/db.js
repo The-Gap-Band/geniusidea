@@ -5,7 +5,6 @@ module.exports = function(app){
 //========================================================//
 //   Database Routes                                      //
 //========================================================//
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
