@@ -81,6 +81,25 @@ module.exports = function(app){
     });
   });
 
+  // GET USER UPDATES TIMES AND FREQUENCY 
+  app.get('/api/updateHabit', function(req, res){
+    // var update = req.body.update;
+    pg.connect(connectionString, function(err, client, done){
+      var query = client.query("SELECT habits.habit, count(updates.habit_id) FROM habits INNER JOIN updates ON habits.habit_id = updates.habit_id GROUP BY habits.habit;");
+      var rows = [];
+      if (err) {
+        return console.error('error running query', err);
+      }
+      query.on('row', function(row) {
+        rows.push(row);
+      });
+      query.on('end', function(result) {
+        client.end();
+        return res.json(rows);
+      });
+    });
+  });
+
   // USER UPDATES HABITS
   app.post('/api/updateHabit', function(req, res){
     var update = req.body.update;
@@ -100,22 +119,4 @@ module.exports = function(app){
     });
   });
 
-  // GET USER UPDATES TIMES AND FREQUENCY 
-  app.get('/api/updateHabit', function(req, res){
-    // var update = req.body.update;
-    pg.connect(connectionString, function(err, client, done){
-      var query = client.query("SELECT habit_id, update FROM updates");
-      var rows = [];
-      if (err) {
-        return console.error('error running query', err);
-      }
-      query.on('row', function(row) {
-        rows.push(row);
-      });
-      query.on('end', function(result) {
-        client.end();
-        return res.json(rows);
-      });
-    });
-  });
 };
