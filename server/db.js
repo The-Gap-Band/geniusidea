@@ -54,7 +54,7 @@ module.exports = function(app){
     query.on('end', function(result) {
       client.end();
       return res.json(rows);
-      
+
     });
   });
  });
