@@ -13,22 +13,12 @@ describe("Persistent Postgres Connection", function() {
   var dbConnection;
 
   beforeEach(function(done) {
-    dbConnection = mysql.createConnection({
-      user: "root",
-      password: "",
-      database: "chat"
-    });
-    dbConnection.connect();
+    var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/postgres';
 
-       var tablename = ""; // TODO: fill this out
-
-    /* Empty the db table before each test so that multiple tests
-     * (or repeated runs of the tests) won't screw each other up: */
-    dbConnection.query("truncate " + tablename, done);
-  });
-
-  afterEach(function() {
-    dbConnection.end();
+    /* delete all rows with 'test' in the username */
+    
+    // SOMETHING LIKE 
+    var query = client.query("DELETE FROM users WHERE username like '%test%'");
   });
 
   // beforeEach(function(done) {
