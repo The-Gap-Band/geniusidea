@@ -17,7 +17,7 @@ describe('SERVER', function() {
     });
 
     // USER CAN ADD A HABIT ON SUBMIT
-    it('should route a habit to the database', function(done) {
+    tit('should route a habit to the database', function(done) {
       request('http://localhost:3000/api/addHabit', function(error, response, body) {
         expect(response.statusCode).to.equal(200);
         done();
