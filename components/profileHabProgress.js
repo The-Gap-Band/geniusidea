@@ -13,17 +13,11 @@ var ProfileHabProgress = React.createClass({
 
   render: function() {
     var habList = this.state.hab; // capturing the current state and saving in an array
-    // console.log('habList',habList)
+    
     
     for (var i = 0; i < habList.length; i++) {
-      // if (typeof habList[i] !== 'string'){
-
-        this.props.habitudesInProgress.push(habList[i]); // iterating through array of db data and putting into a props, habitudesInProgress' so it can be in scope, see habitudesInProgress defined as empty array in render call
-
-      // }  
+      this.props.habitudesInProgress.push(habList[i]); // iterating through array of db data and putting into a props, habitudesInProgress' so it can be in scope, see habitudesInProgress defined as empty array in render call
     };  
-
-    // console.log('this.props.habitudesInProgress',this.props.habitudesInProgress)
 
     return (
    
@@ -31,7 +25,6 @@ var ProfileHabProgress = React.createClass({
         <h3>Habits in Progress</h3>
           <ul>
             {this.props.habitudesInProgress.map(function(obj) { // iterating through db-data to render to Habits in Progress section of profile
-            // console.log('obj-------',obj.habit)
               return <li key={obj.id}>{obj.habit}</li>;
             })}
           </ul>

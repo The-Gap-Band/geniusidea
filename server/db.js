@@ -5,22 +5,19 @@ module.exports = function(app){
 //========================================================//
 //   Database Routes                                      //
 //========================================================//
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:false}));
-  
 
+//========================================================//
+//   Establish Database Connection                        //
+//========================================================//
+/*Change the database name to your local machine's name*/
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
 
-  //========================================================//
-  //   Establish Database Connection                        //
-  //========================================================//
-/*Change the database name from kmerino to you local machine's name*/
-  // var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/kmerino';
-
-  //========================================================//
-  //   Database Queries                                     //
-  //========================================================//
+//========================================================//
+//   Database Queries                                     //
+//========================================================//
 
   // SHOWS USER PROFILE
   app.get('/api/profile', function(req, res){
@@ -66,11 +63,6 @@ app.post('/api/habits', function(req, res){
   pg.connect(connectionString, function(err, client, done){
     var query = client.query("INSERT INTO habits (user_id, habit) VALUES ($1, $2)", [1, habit]);
 
-    /* VY TESTING THE POST QUERY-ING */
-    // var query = client.query("INSERT INTO habits (user_id, habit) VALUES (3, 'NUMERO TRES')");
-
-
-
     var rows = []; // Array to hold values returned from database
     if (err) {
       return console.error('error running query', err);
@@ -86,9 +78,21 @@ app.post('/api/habits', function(req, res){
 });
 
 // USER UPDATES HABITS
-// app.post('/api/updateHabit', function(req, res){
-//   pg.connect(connectionString, function(err, client, done){
-
-
-// });
+app.post('/api/updateHabit', function(req, res){
+  var update = req.body.update;
+  pg.connect(connectionString, function(err, client, done){
+    var query = client.query("QUERY GOES HERE");
+    var rows = [];
+    if (err) {
+      return console.error('error running query', err);
+    }
+    query.on('row', function(row) {
+      rows.push(row);
+    });
+    query.on('end', function(result) {
+      client.end();
+      return res.json(rows);
+    });
+  });
+});
 }

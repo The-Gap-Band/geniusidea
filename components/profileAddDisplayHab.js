@@ -94,7 +94,7 @@ var HabitForm = React.createClass({
   render: function() {
     return (
     <form className="habitForm" onSubmit={this.handleSubmit}>
-      <input type="text" placeholder="Say something...creepy..." ref="habit" />
+      <input type="text" placeholder="Enter text" ref="habit" />
       <input type="submit" value="Post" />
     </form>
     );
