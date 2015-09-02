@@ -1,29 +1,37 @@
 var ProfileCheckInCurrentHab = React.createClass({
 
-    incrementCount: function(){
-      this.setState({
-        count: this.state.count + 1
-      });
-    },
+  updateCount: function(update){
 
-    getInitialState: function() {
-      return {data: this.props.data, foo:true, count: 0};
-    },
+    $.ajax({
+      url: this.props.url,
+      dataType: 'POST',
+      data: update,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
 
-    render: function() {
-        return (
-          <table><tbody>
-            <thead><h3>Check in For Today</h3></thead>
-              <form action="" method="get">
-                {this.props.currentHabits.map(function(cell) {
-                  return <tr><td>{this.state.count}</td><td><button type="button" onClick={this.incrementCount}>Check-in</button> {cell} </td></tr>
-                })}
-              </form>
-          </tbody></table>
-        );
-    }
+  getInitialState: function() {
+    return {data: []};
+  },
+
+  render: function() {
+    return (
+      <table><tbody>
+      <thead><h3>Check in For Today</h3></thead>
+      {this.props.currentHabits.map(function(cell) {
+        return <tr><td><button type="submit" formmethod="post" onClick={this.updateCount}>Check-in</button> {cell} </td></tr>
+      }.bind(this)
+      )}  
+      </tbody></table>
+      );
+  }
 });
 
-React.render(<ProfileCheckInCurrentHab currentHabits={["Become the best rapper alive","Learn Javascript and stuff","Get super buff by pumping the iron"]} />,document.getElementById("checkincurrenthab"));
+React.render(<ProfileCheckInCurrentHab url={'http://localhost:3000/api/updateHabit'} currentHabits={["Become the best rapper alive","Learn Javascript and stuff","Get super buff by pumping the iron"]} />,document.getElementById("checkincurrenthab"));
 
 
