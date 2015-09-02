@@ -12,6 +12,15 @@ The code below is an example from Shortly-Express. You can use this as a templat
 describe("Persistent Postgres Connection", function() {
   var dbConnection;
 
+  beforeEach(function(done) {
+    var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/postgres';
+
+    /* delete all rows with 'test' in the username */
+    
+    // SOMETHING LIKE 
+    var query = client.query("DELETE FROM users WHERE username like '%test%'");
+  });
+
   // beforeEach(function(done) {
   //   dbConnection = mysql.createConnection({
   //     user: "root",
