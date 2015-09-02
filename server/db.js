@@ -40,19 +40,19 @@ var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/ve
 // SHOWS EXISTING USER HABITS
 app.get('/api/habits', function(req, res){
  pg.connect(connectionString, function(err, client, done){
-  var query = client.query('SELECT user_id, habit from habits');
-    var rows = []; // Array to hold values returned from database
-    if (err) {
-      return console.error('error running query', err);
-    }
-    query.on('row', function(row) {
-      rows.push(row);
-    });
-    query.on('end', function(result) {
-      client.end();
-      return res.json(rows);
+  // var query = client.query('SELECT user_id, habit from habits');
+  //   var rows = []; // Array to hold values returned from database
+  //   if (err) {
+  //     return console.error('error running query', err);
+  //   }
+  //   query.on('row', function(row) {
+  //     rows.push(row);
+  //   });
+  //   query.on('end', function(result) {
+  //     client.end();
+  //     return res.json(rows);
       
-    });
+  //   });
   });
 });
 
