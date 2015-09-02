@@ -1,58 +1,44 @@
-// var ProfileHabProgress = React.createClass({
-//   render: function() {
-//     var results = this.props.habitudes;
-//     return (
-//       <div><h3>Habits in Progress</h3>
-//         <ul>
-//           {results.map(function(result) {
-//             return <li key={result.id}>{result}</li>;
-//           })}
-//         </ul>
-//       </div>
-//     );
-//   }
-// })
-
-// React.render(<ProfileHabProgress habitudes={['12/30 day streak',"29/30 day streak","7/30 day streak"]} />, document.getElementById("habprogress"))
-
 var ProfileHabProgress = React.createClass({
-  getInitialState: function() {
+  getInitialState: function() { // setting initial state to an empty string
     return {
-      hab: 'Dasdsa'
+      hab: ''
     };
   },
 
   componentDidMount: function() {
-    // console.log('this.props : ',this.props)
-    // console.log('habitudes : ',this.props.habitudes)
-    // console.log('this. state : ', this.state)
     $.get(this.props.habitudes, function(result) {
-      // console.log('result',result)
-      this.setState({hab : result});
-      // console.log('thing ', thing)
-      // console.log('this.state.hab inside didmount',this.state.hab);
-
+      this.setState({hab : result}); // setting the current state to the result of the db-query
     }.bind(this));
   },
 
   render: function() {
-    console.log('this.state.hab',this.state.hab)
-    // var results = this.state.hab;
-    // console.log('thing2 :',this.habitudes)
+    var habList = this.state.hab; // capturing the current state and saving in an array
     
-      
+    
+    for (var i = 0; i < habList.length; i++) {
+      this.props.habitudesInProgress.push(habList[i]); // iterating through array of db data and putting into a props, habitudesInProgress' so it can be in scope, see habitudesInProgress defined as empty array in render call
+    };  
+
     return (
    
-   <div>
-      <h3>Habits in Progress</h3>
-        <ul> {this.state.hab}</ul>
-    </div>
+      <div>
+        <h3>Habits in Progress</h3>
+          <ul>
+            {this.props.habitudesInProgress.map(function(obj) { // iterating through db-data to render to Habits in Progress section of profile
+              return <li key={obj.id}>{obj.habit}</li>;
+            })}
+          </ul>
+      </div>
        
     );
   }
 })
-          // {this.state.hab.map(function(result) {
-            // return <li key={result.id}>{result}</li>;
-          // })}
 
-React.render(<ProfileHabProgress habitudes={'http://localhost:3000/api/habits'} />, document.getElementById("habprogress"))
+React.render(<ProfileHabProgress habitudesInProgress={[]} habitudes={'http://localhost:3000/api/habits'} />, document.getElementById("habprogress"))
+
+
+
+
+
+
+

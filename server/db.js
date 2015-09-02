@@ -8,19 +8,16 @@ module.exports = function(app){
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:false}));
-  
 
-
-  //========================================================//
-  //   Establish Database Connection                        //
-  //========================================================//
-
-/*Change the database name from kmerino to you local machine's name*/
+//========================================================//
+//   Establish Database Connection                        //
+//========================================================//
+/*Change the database name to your local machine's name*/
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
 
-  //========================================================//
-  //   Database Queries                                     //
-  //========================================================//
+//========================================================//
+//   Database Queries                                     //
+//========================================================//
 
   // SHOWS USER PROFILE
   app.get('/api/profile', function(req, res){
@@ -62,8 +59,10 @@ app.get('/api/habits', function(req, res){
 // USER CREATES A NEW HABIT
 app.post('/api/habits', function(req, res){
   var habit = req.body.habit;
+  console.log('habit', habit)
   pg.connect(connectionString, function(err, client, done){
     var query = client.query("INSERT INTO habits (user_id, habit) VALUES ($1, $2)", [1, habit]);
+
     var rows = []; // Array to hold values returned from database
     if (err) {
       return console.error('error running query', err);
