@@ -6,7 +6,6 @@ module.exports = function(app){
 //   Database Routes                                      //
 //========================================================//
 
-<<<<<<< HEAD
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
@@ -18,16 +17,6 @@ app.use(bodyParser.urlencoded({extended:false}));
   /*Change the database name from kmerino to you local machine's name*/
   var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/postgres';
 
-=======
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended:false}));
-
-//========================================================//
-//   Establish Database Connection                        //
-//========================================================//
-/*Change the database name to your local machine's name*/
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
->>>>>>> 82879db00d894dc45646083ccc171024cb160529
 
 //========================================================//
 //   Database Queries                                     //

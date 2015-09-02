@@ -12,6 +12,25 @@ The code below is an example from Shortly-Express. You can use this as a templat
 describe("Persistent Postgres Connection", function() {
   var dbConnection;
 
+  beforeEach(function(done) {
+    dbConnection = mysql.createConnection({
+      user: "root",
+      password: "",
+      database: "chat"
+    });
+    dbConnection.connect();
+
+       var tablename = ""; // TODO: fill this out
+
+    /* Empty the db table before each test so that multiple tests
+     * (or repeated runs of the tests) won't screw each other up: */
+    dbConnection.query("truncate " + tablename, done);
+  });
+
+  afterEach(function() {
+    dbConnection.end();
+  });
+
   // beforeEach(function(done) {
   //   dbConnection = mysql.createConnection({
   //     user: "root",
