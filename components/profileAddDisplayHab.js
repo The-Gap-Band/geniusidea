@@ -47,7 +47,7 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
   },
   componentDidMount: function() {
     this.loadHabitsFromServer();
-    setInterval(this.loadHabitsFromServer, this.props.pollInterval);
+    // setInterval(this.loadHabitsFromServer, this.props.pollInterval);
   },
   render: function() {
     return (
@@ -63,23 +63,24 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
 var HabitList = React.createClass({
 
   updateHabit: function(update){
-    
+    console.log('update is: ', update);
     $.ajax({
       url: this.props.url,
-      type: 'POST',
+      // type: 'POST',
       dataType: 'json',
-      data: update,
-      processData: false,
-      success: function(data) {
-        this.setState({data: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
+      data: update
+      // success: function(data) {
+      //   this.setState({data: data});
+      // }.bind(this),
+      // error: function(xhr, status, err) {
+      //   console.error(this.props.url, status, err.toString());
+      // }.bind(this)
     });
+
   },
 
   render: function() {
+
   var habitNodes = this.props.data.map(function(habit, index) {
   if (habit.count === undefined) {
     habit.count = 0;
@@ -87,17 +88,18 @@ var HabitList = React.createClass({
     return (
       <table><tbody>
       <tr><td>
+
         <button type="submit" formmethod="post" onClick={this.updateHabit}>Check-in</button></td><td>
-      <Habit user_id={habit.user_id} key={index}>
+        <Habit user_id={habit.user_id} key={index}>
         {habit.habit + ' ' + habit.count} 
-      </Habit>
-      </td></tr>
-      </tbody></table>
-    );
-  }.bind(this));
+        </Habit>
+        </td></tr>
+        </tbody></table>
+        );
+    }.bind(this));
     return (
       <div className="HabitList">{habitNodes}</div>
-    );
+      );
   }
 });
 
