@@ -63,7 +63,7 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
 var HabitList = React.createClass({
 
   updateHabit: function(update){
-    console.log('updateHabit has been called');
+    
     $.ajax({
       url: this.props.url,
       type: 'POST',
