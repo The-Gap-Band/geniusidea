@@ -35,7 +35,7 @@ module.exports = function(app){
       });
       query.on('end', function(result) {
         client.end();
-        return res.json(rows);      
+        return res.json(rows);    
       });   
     });
   });
@@ -56,7 +56,7 @@ module.exports = function(app){
       return res.json(rows);
 
     });
-  });
+  }); 
  });
 
   // USER CREATES A NEW HABIT
@@ -67,12 +67,11 @@ module.exports = function(app){
       // Currently we only post habits for user number 1: Later we will add multiple users
       // var query = client.query("INSERT INTO habits (user_id, habit) VALUES ($1, $2)", [1, habit]);
       var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
-                       "WHERE habits.habit = " + habit + ")"; 
+                       "WHERE habits.habit = '" + habit + "')"; 
 
-      console.log('getIDQuery', getIDQuery); 
-      var habitsQuery = client.query("INSERT INTO habits (user_id, habit) VALUES (" + 1 + "," + habit + ");" +
+      var habitsQuery = client.query("INSERT INTO habits (user_id, habit) VALUES (" + 1 + ", '" + habit + "');" +
                                      "INSERT INTO updates (habit_id, update) " + 
-                                     "VALUES (" + getIDQuery + ", current_timestamp - interval '100 years');");
+                                     "VALUES (" + getIDQuery + " , current_timestamp - interval '100 years');");
 
       // Array to hold values returned from database
       var rows = []; 
