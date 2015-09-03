@@ -66,12 +66,16 @@ var HabitList = React.createClass({
   render: function() {
   console.log('this.props from HabitList func',this.props)
   var habitNodes = this.props.data.map(function(habit, index) {
+  // console.log('???????????');
+  if (habit.count === undefined) {
+    habit.count = 0;
+  }
     return (
     // `key` is a React-specific concept and is not mandatory for the
     // purpose of this tutorial. if you're curious, see more here:
     // http://facebook.github.io/react/docs/multiple-components.html#dynamic-children
       <Habit user_id={habit.user_id} key={index}>
-        {habit.habit}
+        {habit.habit + ' ' + habit.count}
       </Habit>
     );
   });
@@ -101,4 +105,9 @@ var HabitForm = React.createClass({
   }
 });
 
-React.render(<ProfileAddDisplayHab url={'http://localhost:3000/api/habits'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
+React.render(<ProfileAddDisplayHab url={'http://localhost:3000/api/updateHabit'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
+
+
+
+
+
