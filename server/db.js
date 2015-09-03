@@ -87,26 +87,6 @@ module.exports = function(app){
         return res.json(rows);
       });
 
-      // var updatesQuery = client.query("INSERT INTO updates (habit_id, update) " + 
-      //                                 "VALUES (" + getIDQuery + ", current_timestamp - interval '100 years');");
-
-      
-      // var updatesQuery = client.query("INSERT INTO updates (habit_id, update) " + 
-      //                                 "VALUES (12, current_timestamp - interval '100 years');");
-
-      // // Array to hold values returned from database
-      // rows = []; 
-      // if (err) {
-      //   return console.error('error running query', err);
-      // }
-      // updatesQuery.on('row', function(row) {
-      //   rows.push(row);
-      // });
-      // updatesQuery.on('end', function(result) {
-      //   client.end();
-      //   return res.json(rows);
-      // });
-
 
     });
   });
