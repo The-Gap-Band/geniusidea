@@ -1,6 +1,5 @@
 var Habit = React.createClass({
   render: function() {
-  console.log('this ',this)
   var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
     return (
       <div className="habit">
@@ -19,7 +18,6 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
       cache: false,
       success: function(data) {
         this.setState({data: data});
-        console.log('data',data);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -51,7 +49,6 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
     setInterval(this.loadHabitsFromServer, this.props.pollInterval);
   },
   render: function() {
-    console.log('this.state.data ',this.state.data)
     return (
       <div className="habitBox">
         <h1>Current Habitssss</h1>
@@ -64,14 +61,16 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
 
 var HabitList = React.createClass({
   render: function() {
-  console.log('this.props from HabitList func',this.props)
   var habitNodes = this.props.data.map(function(habit, index) {
+  if (habit.count === undefined) {
+    habit.count = 0;
+  }
     return (
     // `key` is a React-specific concept and is not mandatory for the
     // purpose of this tutorial. if you're curious, see more here:
     // http://facebook.github.io/react/docs/multiple-components.html#dynamic-children
       <Habit user_id={habit.user_id} key={index}>
-        {habit.habit}
+        {habit.habit + ' ' + habit.count}
       </Habit>
     );
   });
@@ -102,3 +101,8 @@ var HabitForm = React.createClass({
 });
 
 React.render(<ProfileAddDisplayHab url={'http://localhost:3000/api/habits'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
+
+
+
+
+
