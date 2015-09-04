@@ -156,6 +156,7 @@ module.exports = function(app){
       var query = client.query("INSERT INTO updates (habit_id) " +
                                "VALUES (" + getIDQuery + ")");
       done();
+
       var rows = [];
       if (err) {
         return console.error('error running query', err);
