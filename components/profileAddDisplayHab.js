@@ -47,7 +47,7 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
   },
   componentDidMount: function() {
     this.loadHabitsFromServer();
-    // setInterval(this.loadHabitsFromServer, this.props.pollInterval);
+    setInterval(this.loadHabitsFromServer, this.props.pollInterval);
   },
   render: function() {
     return (
@@ -62,19 +62,20 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
 
 var HabitList = React.createClass({
 
-  updateHabit: function(update){
-    console.log('update is: ', update);
+  updateHabit: function(habit, update){
+
     $.ajax({
-      url: this.props.url,
-      // type: 'POST',
+      url: 'http://localhost:3000/api/updateHabit',
+      type: 'POST',
+      data: habit,
       dataType: 'json',
-      data: update
-      // success: function(data) {
-      //   this.setState({data: data});
-      // }.bind(this),
-      // error: function(xhr, status, err) {
-      //   console.error(this.props.url, status, err.toString());
-      // }.bind(this)
+      success: function(data) {
+        
+        
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
     });
 
   },
@@ -88,8 +89,7 @@ var HabitList = React.createClass({
     return (
       <table><tbody>
       <tr><td>
-
-        <button type="submit" formmethod="post" onClick={this.updateHabit}>Check-in</button></td><td>
+        <button type="submit" formmethod="post" onClick={this.updateHabit.bind(this, habit)}>Check-in</button></td><td>
         <Habit user_id={habit.user_id} key={index}>
         {habit.habit + ' ' + habit.count} 
         </Habit>
@@ -125,5 +125,5 @@ var HabitForm = React.createClass({
 });
 
 
-React.render(<ProfileAddDisplayHab url={'http://localhost:3000/api/updateHabit'} /*pollInterval={2000}*/ habitsObj={{}}/>, document.getElementById("adddisplayhab"));
+React.render(<ProfileAddDisplayHab url={'http://localhost:3000/api/updateHabit'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
 
