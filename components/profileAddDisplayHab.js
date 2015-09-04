@@ -30,7 +30,7 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
     var newHabits = habits.concat([habit]);
     this.setState({data: newHabits});
     $.ajax({
-      url: this.props.url,
+      url: 'http://localhost:3000/api/habits',
       dataType: 'json',
       type: 'POST',
       data: habit,
@@ -91,7 +91,7 @@ var HabitList = React.createClass({
       <tr><td>
         <button type="submit" formmethod="post" onClick={this.updateHabit.bind(this, habit)}>Check-in</button></td><td>
         <Habit user_id={habit.user_id} key={index}>
-        {habit.habit + ' ' + habit.count} 
+        {habit.habit+' '+(habit.count-1)} 
         </Habit>
         </td></tr>
         </tbody></table>

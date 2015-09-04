@@ -97,7 +97,7 @@ module.exports = function(app){
                                "FROM habits " + 
                                "INNER JOIN updates " + 
                                "ON habits.habit_id = updates.habit_id " + 
-                               "WHERE update > current_timestamp - interval '20 years' " +
+                               "WHERE update > current_timestamp - interval '200 years' " +
                                "GROUP BY habits.habit;");
       var rows = [];
       if (err) {
