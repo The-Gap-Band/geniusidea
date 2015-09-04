@@ -97,7 +97,7 @@ module.exports = function(app){
      "INSERT INTO updates (habit_id, update) " + 
      "VALUES (" + getIDQuery + " , current_timestamp - interval '100 years');");
 
-      done();
+    done();
       // Array to hold values returned from database
       
       var rows = []; 
@@ -115,7 +115,7 @@ module.exports = function(app){
 
 
     });
-  });
+});
 
   // GET USER UPDATES TIMES AND FREQUENCY 
   app.get('/api/updateHabit', function(req, res){
@@ -151,27 +151,25 @@ module.exports = function(app){
       // CURL COMMAND: curl -X POST -d "habit='biking'" localhost:3000/api/updateHabit
       // will update the 'biking' habit
 
-     var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
+      var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
+
                        "WHERE habits.habit = '" + habit + "')";
 
       var query = client.query("INSERT INTO updates (habit_id) " +
                                "VALUES (" + getIDQuery + ")");
       done();
-
- 
-
-    var rows = [];
-    if (err) {
-      return console.error('error running query', err);
-    }
-    query.on('row', function(row) {
-      rows.push(row);
+      var rows = [];
+      if (err) {
+        return console.error('error running query', err);
+     }
+      query.on('row', function(row) {
+        rows.push(row);
+      });
+      query.on('end', function(result) {
+        client.end();
+        return res.json(rows);
+      });
     });
-    query.on('end', function(result) {
-      client.end();
-      return res.json(rows);
-    });
-  });
   });
 
   // Changes to test out rebase workflow
