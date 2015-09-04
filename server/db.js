@@ -154,6 +154,7 @@ module.exports = function(app){
       var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
                        "WHERE habits.habit = '" + habit + "')";
 
+
       var query = client.query("INSERT INTO updates (habit_id) " +
                                "VALUES (" + getIDQuery + ")");
       done();
