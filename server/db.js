@@ -13,7 +13,11 @@ module.exports = function(app){
 //   Establish Database Connection                        //
 //========================================================//
 /*Change the database name to your local machine's name*/
-  var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/kmerino';
+  // var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
+
+  var connectionString = process.env.DATABASE_URL || 'postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva';
+  // console.log('process.env *********************',process.env);
+  // console.log('connectionString',connectionString);
 
   //========================================================//
   //   Database Queries                                     //
@@ -22,6 +26,7 @@ module.exports = function(app){
   // SHOWS USER PROFILE
   app.get('/api/profile', function(req, res){
     pg.connect(connectionString, function(err, client, done){
+      console.log('CONNECTED TO HEROKU DB *******************************************');
       var query = client.query('SELECT * from users');
       var rows = []; // Array to hold values returned from database
       if (err) {
@@ -117,7 +122,8 @@ module.exports = function(app){
   app.post('/api/updateHabit', function(req, res){
     var habit = req.body.habit;
     pg.connect(connectionString, function(err, client, done){
-      
+      console.log('CONNECTED TO HEROKU DB *******************************************',connectionString);
+      console.log('what is process.env.DATABASE_URL????????',process.env.DATABASE_URL)
       // Posts an update to the 'updates' table where the habit_id matches that of the input habit string
       // CURL COMMAND: curl -X POST -d "habit='biking'" localhost:3000/api/updateHabit
       // will update the 'biking' habit
