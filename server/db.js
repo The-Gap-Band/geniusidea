@@ -122,8 +122,7 @@ module.exports = function(app){
       // Posts an update to the 'updates' table where the habit_id matches that of the input habit string
       // CURL COMMAND: curl -X POST -d "habit='biking'" localhost:3000/api/updateHabit
       // will update the 'biking' habit
-
-      var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
+     var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
                        "WHERE habits.habit = '" + habit + "')";
 
       var query = client.query("INSERT INTO updates (habit_id) " +
@@ -135,7 +134,6 @@ module.exports = function(app){
     }
     query.on('row', function(row) {
       rows.push(row);
-    });
     query.on('end', function(result) {
       client.end();
       return res.json(rows);
