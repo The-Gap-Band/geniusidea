@@ -125,6 +125,9 @@ var HabitForm = React.createClass({
 });
 
 React.render(<ProfileAddDisplayHab url={'/api/updateHabit'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> Commits to prepare for pull from upstream master
