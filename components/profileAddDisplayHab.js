@@ -30,7 +30,7 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
     var newHabits = habits.concat([habit]);
     this.setState({data: newHabits});
     $.ajax({
-      url: 'http://localhost:3000/api/habits',
+      url: '/api/habits',
       dataType: 'json',
       type: 'POST',
       data: habit,
@@ -65,7 +65,7 @@ var HabitList = React.createClass({
   updateHabit: function(habit, update){
 
     $.ajax({
-      url: 'http://localhost:3000/api/updateHabit',
+      url: '/api/updateHabit',
       type: 'POST',
       data: habit,
       dataType: 'json',
@@ -125,5 +125,5 @@ var HabitForm = React.createClass({
 });
 
 
-React.render(<ProfileAddDisplayHab url={'http://localhost:3000/api/updateHabit'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
+React.render(<ProfileAddDisplayHab url={'/api/updateHabit'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
 
