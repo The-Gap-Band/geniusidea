@@ -66,11 +66,11 @@ module.exports = function(app){
       // Currently we only post habits for user number 1: Later we will add multiple users
       // var query = client.query("INSERT INTO habits (user_id, habit) VALUES ($1, $2)", [1, habit]);
       var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
-                       "WHERE habits.habit = '" + habit + "')"; 
+       "WHERE habits.habit = '" + habit + "')"; 
 
-      var habitsQuery = client.query("INSERT INTO habits (user_id, habit) VALUES (" + 1 + ", '" + habit + "');" +
-                                     "INSERT INTO updates (habit_id, update) " + 
-                                     "VALUES (" + getIDQuery + " , current_timestamp - interval '100 years');");
+    var habitsQuery = client.query("INSERT INTO habits (user_id, habit) VALUES (" + 1 + ", '" + habit + "');" +
+     "INSERT INTO updates (habit_id, update) " + 
+     "VALUES (" + getIDQuery + " , current_timestamp - interval '100 years');");
 
       // Array to hold values returned from database
       var rows = []; 
@@ -96,11 +96,11 @@ module.exports = function(app){
     // CURL COMMAND: curl -i localhost:3000/api/updateHabit
     pg.connect(connectionString, function(err, client, done){
       var query = client.query("SELECT habits.habit, count(updates.habit_id) " + 
-                               "FROM habits " + 
-                               "INNER JOIN updates " + 
-                               "ON habits.habit_id = updates.habit_id " + 
-                               "WHERE update > current_timestamp - interval '200 years' " +
-                               "GROUP BY habits.habit;");
+       "FROM habits " + 
+       "INNER JOIN updates " + 
+       "ON habits.habit_id = updates.habit_id " + 
+       "WHERE update > current_timestamp - interval '200 years' " +
+       "GROUP BY habits.habit;");
       var rows = [];
       if (err) {
         return console.error('error running query', err);
@@ -123,24 +123,23 @@ module.exports = function(app){
       // CURL COMMAND: curl -X POST -d "habit='biking'" localhost:3000/api/updateHabit
       // will update the 'biking' habit
 
-     var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
-                       "WHERE habits.habit = '" + habit + "')";
+      var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
+       "WHERE habits.habit = '" + habit + "')";
+    var query = client.query("INSERT INTO updates (habit_id) " +
+     "VALUES (" + getIDQuery + ")");
 
-      var query = client.query("INSERT INTO updates (habit_id) " +
-                               "VALUES (" + getIDQuery + ")");
-
-      var rows = [];
-      if (err) {
-        return console.error('error running query', err);
-      }
-      query.on('row', function(row) {
-        rows.push(row);
-      });
-      query.on('end', function(result) {
-        client.end();
-        return res.json(rows);
-      });
+    var rows = [];
+    if (err) {
+      return console.error('error running query', err);
+    }
+    query.on('row', function(row) {
+      rows.push(row);
     });
+    query.on('end', function(result) {
+      client.end();
+      return res.json(rows);
+    });
+  });
   });
 
   // Changes to test out rebase workflow
