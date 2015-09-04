@@ -151,6 +151,7 @@ module.exports = function(app){
       // CURL COMMAND: curl -X POST -d "habit='biking'" localhost:3000/api/updateHabit
       // will update the 'biking' habit
       var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
+
                       "WHERE habits.habit = '" + habit + "')";
 
       var query = client.query("INSERT INTO updates (habit_id) " +
@@ -171,4 +172,5 @@ module.exports = function(app){
     });
   });
 
+  // Changes to test out rebase workflow
 };
