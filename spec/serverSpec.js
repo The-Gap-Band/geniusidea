@@ -6,11 +6,11 @@ var expect = require('chai').expect;
 
 var server = require('../app.js'); //.server;
 
-describe('SERVER', function() {
+describe('API', function() {
   describe('Request Methods', function() {
 
-    it('should serve the home page ', function(done) {
-      request('http://localhost:3000/', function(error, response, body) {
+    it('should respond to GET requests for "/" with a 200 status', function(done) {
+      request.get('http://localhost:3000', function(error, response, body) {
         expect(response.statusCode).to.equal(200);
         done();
       });
@@ -18,13 +18,7 @@ describe('SERVER', function() {
     // SERVER RESPONDS TO ADD A HABIT ON SUBMIT
     
     // USER CAN UPDATE THEIR HABIT 
-    xit('should send back parsable stringified JSON', function(done) {
-      request('', function(error, response, body) {
-        var req = 
-        expect(response.statusCode).to.equal(200);
-        done();
-      });
-    });
+    
     
   });
 

@@ -26,6 +26,7 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
   },
 
   handleHabitSubmit: function(habit) {
+    console.log(habit);
     var habits = this.state.data;
     var newHabits = habits.concat([habit]);
     this.setState({data: newHabits});
