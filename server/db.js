@@ -124,9 +124,10 @@ module.exports = function(app){
       // will update the 'biking' habit
 
       var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
-       "WHERE habits.habit = '" + habit + "')";
-    var query = client.query("INSERT INTO updates (habit_id) " +
-     "VALUES (" + getIDQuery + ")");
+                       "WHERE habits.habit = '" + habit + "')";
+
+      var query = client.query("INSERT INTO updates (habit_id) " +
+                               "VALUES (" + getIDQuery + ")");
 
     var rows = [];
     if (err) {
