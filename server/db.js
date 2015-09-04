@@ -15,7 +15,7 @@ module.exports = function(app){
   //   Establish Database Connection                        //
   //========================================================//
   /*Change the database name from kmerino to you local machine's name*/
-  var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/postgres';
+  var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
 
 
   //========================================================//
@@ -59,7 +59,7 @@ module.exports = function(app){
   }); 
  });
 
-  // USER CREATES A NEW HABIT
+  // USER CREATES A NEW HABIT and inserts a null timestamp in updates table
   app.post('/api/habits', function(req, res){
     var habit = req.body.habit;
     pg.connect(connectionString, function(err, client, done){
