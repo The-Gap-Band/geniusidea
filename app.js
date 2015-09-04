@@ -3,7 +3,6 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-// var requestHandler = require('./server/requestHandler.js')(app);
 var bodyParser = require('body-parser');
 var port = process.env.PORT || '3000';
 var db = require('./server/db.js')(app);

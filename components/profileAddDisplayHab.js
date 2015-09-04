@@ -24,12 +24,13 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
       }.bind(this)
     });
   },
+
   handleHabitSubmit: function(habit) {
     var habits = this.state.data;
     var newHabits = habits.concat([habit]);
     this.setState({data: newHabits});
     $.ajax({
-      url: this.props.url,
+      url: 'http://localhost:3000/api/habits',
       dataType: 'json',
       type: 'POST',
       data: habit,
@@ -51,7 +52,7 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
   render: function() {
     return (
       <div className="habitBox">
-        <h1>Current Habitssss</h1>
+        <h1>Habit Tracker</h1>
         <HabitList data={this.state.data} />
         <HabitForm onHabitSubmit={this.handleHabitSubmit} />
       </div>
@@ -60,23 +61,45 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
 });
 
 var HabitList = React.createClass({
+
+  updateHabit: function(habit, update){
+
+    $.ajax({
+      url: 'http://localhost:3000/api/updateHabit',
+      type: 'POST',
+      data: habit,
+      dataType: 'json',
+      success: function(data) {
+        
+        
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+
+  },
+
   render: function() {
+
   var habitNodes = this.props.data.map(function(habit, index) {
   if (habit.count === undefined) {
     habit.count = 0;
   }
     return (
-    // `key` is a React-specific concept and is not mandatory for the
-    // purpose of this tutorial. if you're curious, see more here:
-    // http://facebook.github.io/react/docs/multiple-components.html#dynamic-children
-      <Habit user_id={habit.user_id} key={index}>
-        {habit.habit + ' ' + habit.count}
-      </Habit>
-    );
-  });
+      <table><tbody>
+      <tr><td>
+        <button type="submit" formmethod="post" onClick={this.updateHabit.bind(this, habit)}>Check-in</button></td><td>
+        <Habit user_id={habit.user_id} key={index}>
+        {habit.habit+' '+(habit.count-1)} 
+        </Habit>
+        </td></tr>
+        </tbody></table>
+        );
+    }.bind(this));
     return (
       <div className="HabitList">{habitNodes}</div>
-    );
+      );
   }
 });
 
@@ -90,6 +113,7 @@ var HabitForm = React.createClass({
     this.props.onHabitSubmit({habit: habit});
     React.findDOMNode(this.refs.habit).value = '';
   },
+
   render: function() {
     return (
     <form className="habitForm" onSubmit={this.handleSubmit}>
@@ -100,9 +124,13 @@ var HabitForm = React.createClass({
   }
 });
 
+<<<<<<< HEAD
 React.render(<ProfileAddDisplayHab url={'http://localhost:3000/api/updateHabit'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
 
 
 
+=======
+>>>>>>> fc7fbea7aeb9486cd9c4027a7d17280c70171a2a
 
+React.render(<ProfileAddDisplayHab url={'http://localhost:3000/api/updateHabit'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
 
