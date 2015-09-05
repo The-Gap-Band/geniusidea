@@ -9,12 +9,13 @@ module.exports = function(app){
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:false}));
 
+//========================================================//
+//   Establish Database Connection                        //
+//========================================================//
+/*Change the database name to your local machine's name*/
+  // var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
 
-  //========================================================//
-  //   Establish Database Connection                        //
-  //========================================================//
-  /*Change the database name from kmerino to you local machine's name*/
-  var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
+  var connectionString = process.env.DATABASE_URL || 'postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva';
 
   //========================================================//
   //   Database Queries                                     //
@@ -118,7 +119,6 @@ module.exports = function(app){
   app.post('/api/updateHabit', function(req, res){
     var habit = req.body.habit;
     pg.connect(connectionString, function(err, client, done){
-      
       // Posts an update to the 'updates' table where the habit_id matches that of the input habit string
       // CURL COMMAND: curl -X POST -d "habit='biking'" localhost:3000/api/updateHabit
       // will update the 'biking' habit
