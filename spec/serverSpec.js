@@ -11,12 +11,15 @@ describe('API', function() {
     it('should respond to a GET request for a user profile with 200 status code', function(done){
       request.get('/').expect(200, done);
     });
-    // it('should respond to a GET request for a user profile with 200 status code', function(done) {
-    //   request('http://localhost:3000/', function(error, response, body) {
-    //     expect(response.statusCode).to.equal(200);
-    //     done();
-    //   });
-    // });
+
+    it('should respond to a POST request with a 201 status code', function (done){
+      var object = {habit: 'coding'};
+      request('http:localhost:3000')
+      .post('/api/habits')
+      .send(object)
+      .expect(200)
+      .expect('coding has been stored', done);
+    });
 
     // USER CAN ADD A HABIT ON SUBMIT
     // it('should route a habit to the database', function(done) {
