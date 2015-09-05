@@ -164,6 +164,7 @@ module.exports = function(app){
       query.on('row', function(row) {
         rows.push(row);
       });
+
       query.on('end', function(result) {
         client.end();
         return res.json(rows);
@@ -171,5 +172,4 @@ module.exports = function(app){
     });
   });
 
-  // Changes to test out rebase workflow
 };
