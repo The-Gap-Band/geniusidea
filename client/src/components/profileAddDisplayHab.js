@@ -124,4 +124,17 @@ var HabitForm = React.createClass({
   }
 });
 
+<<<<<<< HEAD:client/src/components/profileAddDisplayHab.js
 React.render(<ProfileAddDisplayHab url={'/api/updateHabit'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
+=======
+<<<<<<< HEAD
+React.render(<ProfileAddDisplayHab url={'http://localhost:3000/api/updateHabit'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
+
+
+
+=======
+>>>>>>> fc7fbea7aeb9486cd9c4027a7d17280c70171a2a
+
+React.render(<ProfileAddDisplayHab url={'http://localhost:3000/api/updateHabit'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
+
+>>>>>>> 9b002734e5a946aea8885dbf88a97650ca5c9e13:components/profileAddDisplayHab.js

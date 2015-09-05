@@ -13,9 +13,13 @@ module.exports = function(app){
 //   Establish Database Connection                        //
 //========================================================//
 /*Change the database name to your local machine's name*/
+<<<<<<< HEAD
   // var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
 
   var connectionString = process.env.DATABASE_URL || 'postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva';
+=======
+  var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/icusmooth';
+>>>>>>> 9b002734e5a946aea8885dbf88a97650ca5c9e13
 
   //========================================================//
   //   Database Queries                                     //
@@ -119,21 +123,23 @@ module.exports = function(app){
   app.post('/api/updateHabit', function(req, res){
     var habit = req.body.habit;
     pg.connect(connectionString, function(err, client, done){
-      //   Posts an update to the 'updates' table where the habit_id matches that of the input habit string
-      //   CURL COMMAND: curl -X POST -d "habit='biking'" localhost:3000/api/updateHabit
-      //   will update the 'biking' habit
-      var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
-        "WHERE habits.habit = '" + habit + "')";
+      // Posts an update to the 'updates' table where the habit_id matches that of the input habit string
+      // CURL COMMAND: curl -X POST -d "habit='biking'" localhost:3000/api/updateHabit
+      // will update the 'biking' habit
 
-    var query = client.query("INSERT INTO updates (habit_id) " + 
-      "VALUES (" + getIDQuery + ")");
+      var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM ###### " + 
+                      "WHERE habits.habit = '" + habit + "')";
 
-    var rows = [];
-    if (err) {
-      return console.error('error running query', err);
-    }
-    query.on('row', function(row) {
-      rows.push(row);
+      var query = client.query("INSERT INTO updates (habit_id) " +
+                               "VALUES (" + getIDQuery + ")");
+
+      var rows = [];
+      if (err) {
+        return console.error('error running query', err);
+      }
+      query.on('row', function(row) {
+        rows.push(row);
+      });
       query.on('end', function(result) {
         client.end();
         return res.json(rows);
@@ -141,4 +147,3 @@ module.exports = function(app){
     });
   });
 
-  });
