@@ -7,34 +7,28 @@ var server = require('../app.js'); //the server;
 request = request('localhost:3000');
 
 describe('API', function() {
-  describe('handle http requests', function() {
-    it('should respond to a GET request for a user profile with 200 status code', function(done){
-      request.get('/').expect(200, done);
+  describe('handle http requests from client', function() {
+    it('should respond to a GET request for a user profile with 200 status code', function (done){
+      request
+      .get('/')
+      .expect(200, done);
     });
-    // it('should respond to a GET request for a user profile with 200 status code', function(done) {
-    //   request('http://localhost:3000/', function(error, response, body) {
-    //     expect(response.statusCode).to.equal(200);
-    //     done();
-    //   });
-    // });
 
-    // USER CAN ADD A HABIT ON SUBMIT
-    // it('should route a habit to the database', function(done) {
-    //   request('http://localhost:3000/api/addHabit', function(error, response, body) {
-    //     expect(response.statusCode).to.equal(200);
-    //     done();
-    //   });
-    // });
+    it('should respond to a POST request to add a habit with a 200 status code', function (done){
+      var object = {habit: 'call_mom'};
+      request
+      .post('/api/habits')
+      .send(object)
+      .expect(200, done);
+    });
 
-    // // USER CAN UPDATE THEIR HABIT 
-    // xit('should send back parsable stringified JSON', function(done) {
-    //   request('', function(error, response, body) {
-    //     var req = 
-    //     expect(response.statusCode).to.equal(200);
-    //     done();
-    //   });
-    // });
-
+    it('should respond to a POST request to update a habit with a 200 status code', function (done){
+      var object = {habit_id: 1, habit: 'coding'};
+      request
+      .post('/api/updateHabit')
+      .send(object)
+      .expect(200, done);
+    });
     
   });
 

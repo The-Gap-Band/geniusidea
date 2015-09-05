@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 //   Serving the client static files                      //
 //========================================================//
 
-app.use(express.static(path.normalize(__dirname + '/')));
+app.use(express.static(path.normalize(__dirname + '/client')));
 
 //========================================================//
 //   Calling the server                                   //

@@ -15,6 +15,8 @@ module.exports = function(app){
 /*Change the database name to your local machine's name*/
   var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/kmerino';
 
+  // var connectionString = process.env.DATABASE_URL || 'postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva';
+
   //========================================================//
   //   Database Queries                                     //
   //========================================================//
@@ -42,6 +44,8 @@ module.exports = function(app){
    pg.connect(connectionString, function(err, client, done){
     var query = client.query('SELECT user_id, habit from habits');
     var rows = []; // Array to hold values returned from database
+    
+    
     if (err) {
       return console.error('error running query', err);
     }
@@ -56,7 +60,7 @@ module.exports = function(app){
   }); 
  });
 
-  // USER CREATES A NEW HABIT
+  // USER CREATES A NEW HABIT and inserts a null timestamp in updates table
   app.post('/api/habits', function(req, res){
     var habit = req.body.habit;
     pg.connect(connectionString, function(err, client, done){
@@ -70,7 +74,9 @@ module.exports = function(app){
                                      "INSERT INTO updates (habit_id, update) " + 
                                      "VALUES (" + getIDQuery + " , current_timestamp - interval '100 years');");
 
+      done();
       // Array to hold values returned from database
+      
       var rows = []; 
       if (err) {
         return console.error('error running query', err);
@@ -80,6 +86,7 @@ module.exports = function(app){
       });
       habitsQuery.on('end', function(result) {
         client.end();
+        console.log('POST has been sent');
         return res.json(rows);
       });
 
@@ -117,7 +124,6 @@ module.exports = function(app){
   app.post('/api/updateHabit', function(req, res){
     var habit = req.body.habit;
     pg.connect(connectionString, function(err, client, done){
-      
       // Posts an update to the 'updates' table where the habit_id matches that of the input habit string
       // CURL COMMAND: curl -X POST -d "habit='biking'" localhost:3000/api/updateHabit
       // will update the 'biking' habit
@@ -126,6 +132,7 @@ module.exports = function(app){
 
       var query = client.query("INSERT INTO updates (habit_id) " +
                                "VALUES (" + getIDQuery + ")");
+      done();
       var rows = [];
       if (err) {
         return console.error('error running query', err);
