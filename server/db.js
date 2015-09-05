@@ -1,5 +1,7 @@
 var pg = require('pg');
 var bodyParser = require('body-parser');
+var config = require('./config');
+var databaseURL = config.databaseURL;
 module.exports = function(app){
 
   //========================================================//
@@ -13,9 +15,9 @@ module.exports = function(app){
 //   Establish Database Connection                        //
 //========================================================//
 /*Change the database name to your local machine's name*/
-  // var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
+  // var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/iceeweeherman';
 
-  var connectionString = process.env.DATABASE_URL || 'postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva';
+  // var connectionString = process.env.DATABASE_URL || 'postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva';
 
 
   //========================================================//
@@ -24,7 +26,7 @@ module.exports = function(app){
 
   // SHOWS USER PROFILE
   app.get('/api/profile', function(req, res){
-    pg.connect(connectionString, function(err, client, done){
+    pg.connect(databaseURL, function(err, client, done){
       var query = client.query('SELECT * from users');
       var rows = []; // Array to hold values returned from database
       if (err) {
@@ -42,7 +44,7 @@ module.exports = function(app){
 
   // SHOWS EXISTING USER HABITS
   app.get('/api/habits', function(req, res){
-   pg.connect(connectionString, function(err, client, done){
+   pg.connect(databaseURL, function(err, client, done){
     var query = client.query('SELECT user_id, habit from habits');
     var rows = []; // Array to hold values returned from database
     if (err) {
@@ -62,7 +64,7 @@ module.exports = function(app){
   // USER CREATES A NEW HABIT and inserts a null timestamp in updates table
   app.post('/api/habits', function(req, res){
     var habit = req.body.habit;
-    pg.connect(connectionString, function(err, client, done){
+    pg.connect(databaseURL, function(err, client, done){
 
       // Currently we only post habits for user number 1: Later we will add multiple users
       // var query = client.query("INSERT INTO habits (user_id, habit) VALUES ($1, $2)", [1, habit]);
@@ -95,7 +97,7 @@ module.exports = function(app){
     // Returns a JSON object with all habits and a count of how many times they occur
     // Example: [{"habit":"trapping","count":"2"},{"habit":"biking","count":"9"}]
     // CURL COMMAND: curl -i localhost:3000/api/updateHabit
-    pg.connect(connectionString, function(err, client, done){
+    pg.connect(databaseURL, function(err, client, done){
       var query = client.query("SELECT habits.habit, count(updates.habit_id) " + 
        "FROM habits " + 
        "INNER JOIN updates " + 
@@ -119,7 +121,7 @@ module.exports = function(app){
   // USER UPDATES HABITS
   app.post('/api/updateHabit', function(req, res){
     var habit = req.body.habit;
-    pg.connect(connectionString, function(err, client, done){
+    pg.connect(databaseURL, function(err, client, done){
       // Posts an update to the 'updates' table where the habit_id matches that of the input habit string
       // CURL COMMAND: curl -X POST -d "habit='biking'" localhost:3000/api/updateHabit
       // will update the 'biking' habit
@@ -144,3 +146,4 @@ module.exports = function(app){
     });
   });
 
+};
