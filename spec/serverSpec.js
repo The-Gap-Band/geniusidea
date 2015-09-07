@@ -32,4 +32,12 @@ describe('API', function() {
     
   });
 
+  describe('handle OAuth routes', function(){
+    // create a user to test OAuth with for the test
+    
+    it('should create a new user record', function (done) {
+
+    });
+  });
+
 });
