@@ -1,0 +1,58 @@
+var LandingNavBar = React.createClass({
+
+render: function(){
+  console.log('***********************************************')
+  return (
+    <nav id="mainNav" className
+    ="navbar navbar-default navbar-fixed-top">
+            <div className="container-fluid">
+                <div className="navbar-header">
+                    <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span className
+                        ="sr-only">Toggle navigation</span>
+                        <span className
+                        ="icon-bar"></span>
+                        <span className
+                        ="icon-bar"></span>
+                        <span className
+                        ="icon-bar"></span>
+                    </button>
+                  
+                      <a className
+                      ="navbar-brand page-scroll" href="#page-top">
+                      <img src="src/assets/habitude_logo.png" width="32" alt="reflectiv"/></a>
+                  
+                </div>
+                <div className
+                ="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul className
+                    ="nav navbar-nav navbar-right">
+                        <li>
+                            <a className
+                            ="page-scroll" href="#home">Home</a>
+                        </li>
+                        <li>
+                            <a className
+                            ="page-scroll" href="#activityfeed">Activity Feed</a>
+                        </li>
+                        <li>
+                            <a className
+                            ="page-scroll" href="#explore">Explore</a>
+                        </li>
+                        <li>
+                            <a className
+                            ="page-scroll" href="#about">About</a>
+                        </li>
+                        <li>
+                            <a className
+                            ="page-scroll" href="#Login">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      )
+  }
+});
+
+React.render(<LandingNavBar />,document.getElementById('navbar'));

@@ -51,18 +51,7 @@ var BasicInputBox = React.createClass ({
   }
  });
 
- var CommentBox = React.createClass({
-   render: function(){
-     return (
-       <div >
-         <label>Have a question?</label>
-         <br/>
-         <textarea type="text" onChange={this.props.valChange} value=      {this.props.val} />
-         <br/>
-       </div>
-     );
-   }
- });
+
  
  var Contact = React.createClass({
     getInitialState: function(){
@@ -79,8 +68,7 @@ var BasicInputBox = React.createClass ({
 
       var data = {
         username: this.state.username,
-        password: this.state.password,
-        comment: this.state.comment
+        password: this.state.password
       }
 
       // Submit form via jQuery/AJAX
@@ -91,7 +79,7 @@ var BasicInputBox = React.createClass ({
         data: data
       })
       .done(function(data) {
-        console.log('WHYYTHEFUCK')
+        console.log('user successfully added!!!!')
         self.clearForm()
       })
       .fail(function(jqXhr) {
@@ -103,8 +91,7 @@ var BasicInputBox = React.createClass ({
     clearForm: function() {
       this.setState({
         username: "",
-        password: "",
-        comment: ""
+        password: ""
       });
     },
 
@@ -116,17 +103,14 @@ var BasicInputBox = React.createClass ({
      this.setState({password: e.target.value})
     },
 
-    commentChange: function(e){
-      this.setState({comment: e.target.value})
-    },
 
     render: function(){
        return (
         <form onSubmit={this.submit} >
           <BasicInputBox label="username:" valChange={this.nameChange} val={this.state.username}/>
           <BasicInputBox label="password:" valChange={this.emailChange} val={this.state.password}/>
-          <CommentBox valChange={this.commentChange} val={this.state.comment}/>
-          <button type="submit" onClick={function(){console.log('peaches and cream')}}>Submit</button>
+
+          <button type="submit" onClick={function(){console.log('peaches and cream')}}>Sign Up</button>
         </form>
       );
     }
