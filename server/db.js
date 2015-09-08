@@ -11,15 +11,6 @@ module.exports = function(app){
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:false}));
 
-//========================================================//
-//   Establish Database Connection                        //
-//========================================================//
-/*Change the database name to your local machine's name*/
-  // var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/iceeweeherman';
-
-  // var connectionString = process.env.DATABASE_URL || 'postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva';
-
-
   //========================================================//
   //   Database Queries                                     //
   //========================================================//
@@ -146,7 +137,7 @@ module.exports = function(app){
   });
   });
 
-  app.get('/api/dbtest', function(req, res) {
+  app.get('/api/dbtest_tables_exist', function(req, res) {
 
     pg.connect(databaseURL, function(err, client, done){
       var query = client.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_schema,table_name;");
@@ -162,6 +153,25 @@ module.exports = function(app){
         return res.json(rows);
       });
     });
+  });
+
+  app.get('/api/dbtest_add_habit', function(req, res) {
+
+    pg.connect(databaseURL, function(err, client, done){
+      var query = client.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_schema,table_name;");
+      var rows = []; 
+      if (err) {
+        return console.error('error running query', err);
+      }
+      query.on('row', function(row) {
+        rows.push(row);
+      });
+      query.on('end', function(result) {
+        client.end();
+        return res.json(rows);
+      });
+    });
+
   });
 
 };
