@@ -56,3 +56,4 @@ React.render(<LandingNavBar />,document.getElementById('navbar'));
                           //     <a className
                           //     ="page-scroll" href="./login.html" onclick={this.login}>Login</a>
                           // </li>
+                          // 
