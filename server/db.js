@@ -13,9 +13,10 @@ module.exports = function(app){
 //   Establish Database Connection                        //
 //========================================================//
 /*Change the database name to your local machine's name*/
-  var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
+  // var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/veeweeherman';
 // export DATABASE_URL='postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva'
-  // var connectionString = process.env.DATABASE_URL || 'postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva';
+// DATABASE_URL='postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva?ssl=true' node app.js
+  var connectionString = process.env.DATABASE_URL || 'postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva';
 
   //========================================================//
   //   Database Queries                                     //
