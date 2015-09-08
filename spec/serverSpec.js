@@ -4,17 +4,18 @@ var assert = require('assert');
 var express = require('express');
 var expect = require('chai').expect;
 var server = require('../app.js'); //the server;
+
 request = request('localhost:3000');
 
 describe('API', function() {
   describe('handle http requests from client', function() {
-    it('should respond to a GET request for a user profile with 200 status code', function (done){
+    xit('should respond to a GET request for a user profile with 200 status code', function (done){
       request
       .get('/')
       .expect(200, done);
     });
 
-    it('should respond to a POST request to add a habit with a 200 status code', function (done){
+    xit('should respond to a POST request to add a habit with a 200 status code', function (done){
       var object = {habit: 'call_mom'};
       request
       .post('/api/habits')
@@ -22,7 +23,7 @@ describe('API', function() {
       .expect(200, done);
     });
 
-    it('should respond to a POST request to update a habit with a 200 status code', function (done){
+    xit('should respond to a POST request to update a habit with a 200 status code', function (done){
       var object = {habit_id: 1, habit: 'coding'};
       request
       .post('/api/updateHabit')
@@ -32,12 +33,22 @@ describe('API', function() {
     
   });
 
-  describe('handle OAuth routes', function(){
-    // create a user to test OAuth with for the test
-    
-    it('should create a new user record', function (done) {
+  describe('Account Creation', function(){
+    // create a user to test singup/login with for the test
 
+    it('should create a new user record on signup', function (done) {
+      var options = {
+        'username': 'maria',
+        'password': '123'
+      };
+
+      request
+        .post('/api/signup')
+        .send(options)
+        .expect(200, done);
     });
-  });
 
+
+
+  });
 });

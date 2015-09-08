@@ -13,13 +13,37 @@ module.exports = function(app){
 //   Establish Database Connection                        //
 //========================================================//
 /*Change the database name to your local machine's name*/
-  var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/kmerino';
+  // var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/kmerino';
 
-  // var connectionString = process.env.DATABASE_URL || 'postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva';
+  var connectionString = process.env.DATABASE_URL || 'postgres://mlsnfeluxqiuff:9ChVkwF-1ypBrOsmB_kNV8rEDi@ec2-54-197-245-93.compute-1.amazonaws.com:5432/de5lornqrnncva';
 
   //========================================================//
   //   Database Queries                                     //
   //========================================================//
+  // ALLOWS USER TO SIGNUP
+  app.post('/api/signup', function(req, res){
+    var user = req.body.username;
+    var password = req.body.password;
+    console.log(password);
+    pg.connect(connectionString, function(err, client, done){
+      var query = client.query('INSERT INTO users(username, password) VALUES ($1, $2)', [user, password]);
+      done();
+      var rows = [];
+      if(err){
+        return console.error('error inserting user', err);
+      }
+
+      query.on('row', function(row) {
+        rows.push(row);
+      });
+      query.on('end', function(result) {
+        client.end();
+        console.log('User has been added');
+        return res.json(rows);
+      });
+
+    });
+  }); 
 
   // SHOWS USER PROFILE
   app.get('/api/profile', function(req, res){
@@ -44,7 +68,6 @@ module.exports = function(app){
    pg.connect(connectionString, function(err, client, done){
     var query = client.query('SELECT user_id, habit from habits');
     var rows = []; // Array to hold values returned from database
-    
     
     if (err) {
       return console.error('error running query', err);
