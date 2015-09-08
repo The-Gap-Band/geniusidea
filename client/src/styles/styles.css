@@ -3,7 +3,6 @@
   /*margin-top: 40%;*/
   display: block;
   margin: auto;
-
   width: 70%;
 
 }
@@ -42,7 +41,7 @@ div {
   }
 }
 
-
+/******************* CSS STYLES FOR BOOTSTRAPPING THE COLUMNS *******************/
 html,body,.container
 {
     height:100%;
@@ -81,4 +80,9 @@ header
     display: table-cell;
     background: yellow;
     width: 75%;
+}
+
+/******************** PUSHES THE PAGE TITLE DOWN BELOW THR NAV BAR *******************/
+.landingPageSignUp {
+  margin-top: 10%;
 }
