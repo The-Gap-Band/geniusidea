@@ -127,12 +127,30 @@ module.exports = function(app){
       // will update the 'biking' habit
 
       var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
-                      "WHERE habits.habit = '" + habit + "')";
+        "WHERE habits.habit = '" + habit + "')";
 
-      var query = client.query("INSERT INTO updates (habit_id) " +
-                               "VALUES (" + getIDQuery + ")");
+    var query = client.query("INSERT INTO updates (habit_id) " +
+     "VALUES (" + getIDQuery + ")");
 
-      var rows = [];
+    var rows = [];
+    if (err) {
+      return console.error('error running query', err);
+    }
+    query.on('row', function(row) {
+      rows.push(row);
+    });
+    query.on('end', function(result) {
+      client.end();
+      return res.json(rows);
+    });
+  });
+  });
+
+  app.get('/api/dbtest', function(req, res) {
+
+    pg.connect(databaseURL, function(err, client, done){
+      var query = client.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_schema,table_name;");
+      var rows = []; 
       if (err) {
         return console.error('error running query', err);
       }
