@@ -5,7 +5,9 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var port = process.env.PORT || '3000';
-var db = require('./server/db.js')(app);
+var route = require('./server/router.js')(app);
+var db = require('./server/db.js');
+
 //========================================================//
 //   connecting the client and server                     //
 //   allows for CORS (cross origin resource sharing)      //
@@ -18,10 +20,12 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(express.static(path.normalize(__dirname + '/client')));
 
+
 //TRYING TO HAVE LANDING PAGE ON SERVER
 app.get('/landing', function(req, res) {
     res.sendFile(path.join(__dirname + '/client/landing.html'));
 });
+
 //========================================================//
 //   Calling the server                                   //
 //========================================================//

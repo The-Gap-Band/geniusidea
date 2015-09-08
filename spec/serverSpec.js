@@ -34,9 +34,7 @@ describe('API', function() {
   });
 
   describe('Account Creation', function(){
-    // create a user to test singup/login with for the test
-
-    it('should create a new user record on signup', function (done) {
+    xit('should create a new user record on signup', function (done) {
       var options = {
         'username': 'maria',
         'password': '123'
@@ -48,7 +46,39 @@ describe('API', function() {
         .expect(200, done);
     });
 
+    it('Signup logs in a new user ', function (done){
 
+      var options = {
+        'username': 'rachel',
+        'password': '123'
+      };
 
+      request
+        .post('/api/signup')
+        .send(options)
+        .expect(302)
+        .end(function(err, res){
+          expect(res.header.location).to.equal('/profile');
+          done();
+        });
+    });
   });
+  describe('Account Login: ', function (){
+     var options = {
+        'username': 'rachel',
+        'password': '123'
+      };
+
+    it('should login existing users', function (done){
+      request
+        .post('/api/login')
+        .send(options)
+        .end(function(err, res){
+          expect(res.header.location).to.equal('/profile');
+          done();
+        });
+    });
+  }); 
+
+    
 });
