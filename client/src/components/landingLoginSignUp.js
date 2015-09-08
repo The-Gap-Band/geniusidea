@@ -106,12 +106,14 @@ var BasicInputBox = React.createClass ({
 
     render: function(){
        return (
-        <form onSubmit={this.submit} >
+        <div><form onSubmit={this.submit} >
           <BasicInputBox label="username:" valChange={this.nameChange} val={this.state.username}/>
           <BasicInputBox label="password:" valChange={this.emailChange} val={this.state.password}/>
 
           <button type="submit" onClick={function(){console.log('peaches and cream')}}>Sign Up</button>
         </form>
+        <button type="submit" onClick={function(){console.log('user wants to log in now')}}>Log in</button>
+        </div>
       );
     }
 });
