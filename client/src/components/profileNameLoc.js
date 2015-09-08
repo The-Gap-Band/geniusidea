@@ -7,5 +7,5 @@ var ProfileNameLoc = React.createClass({
       </div>)
 	}
 })
-
+// TODO: name and location needs to be queried form the db
 React.render(<ProfileNameLoc name="Robert Sylvester Kelly" location="Berkeley, CA"/>, document.getElementById("nameloc"))

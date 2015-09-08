@@ -93,7 +93,8 @@ var HabitList = React.createClass({
         <button type="submit" formmethod="post" onClick={this.updateHabit.bind(this, habit)}>Check-in</button></td><td>
         <Habit user_id={habit.user_id} key={index}>
         {habit.habit+' '+(habit.count-1)} 
-        </Habit>
+        </Habit></td>
+        <td><button type="button" className="btn btn-xs btn-danger" formmethod="post" onClick={function(){console.log('delete meeeeeeeeee!!!!!!')}}>DELETEME</button>
         </td></tr>
         </tbody></table>
         );
