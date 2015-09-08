@@ -1,7 +1,5 @@
 var LandingNavBar = React.createClass({
-  login: function(){
-    console.log('TRY AND LOG ME IN BIATCH')
-  },
+
 
   render: function(){
     return (
