@@ -1,16 +1,17 @@
 var express = require('express');
 var app = express();
 var db = require('./db.js');
+var bodyParser = require('body-parser');
+
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended:false}));
+
 module.exports = function(app){
+  
   app.post('/api/signup', function (req, res){
-    newUser(req, res);
-    if(!err){
-      res.redirect(302, '/profile.html');
-    } else {
-      res.redirect(302, '/signup');
-    }
-    res.redirect(302, '/signup');
-  });
+
+    db.newUser(req, res);
+    res.redirect(302, '/api/profile.html');
 
   app.post('/api/login', function(req, res){
     findUser(req, res);
@@ -25,4 +26,17 @@ module.exports = function(app){
       }
     }
   });
+
+  // SHOW EXISTING USER HABITS
+
+  // USER ADDS A NEW HABIT
+  app.post('/api/habits', function (req, res){
+    addHabit(req, res);
+
+    // new habit is updated to habit list
+    // and rendered to client
+  });
+  
+  // USER UPDATES HABIT
+  // USER DELETES HABIT 
 };

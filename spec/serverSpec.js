@@ -9,13 +9,13 @@ request = request('localhost:3000');
 
 describe('API', function() {
   describe('handle http requests from client', function() {
-    xit('should respond to a GET request for a user profile with 200 status code', function (done){
+    xit('should respond to a GET request for profile page with a 200 status code', function (done){
       request
       .get('/')
       .expect(200, done);
     });
 
-    xit('should respond to a POST request to add a habit with a 200 status code', function (done){
+    it('should respond to a POST request to add a habit with a 200 status code', function (done){
       var object = {habit: 'call_mom'};
       request
       .post('/api/habits')
@@ -24,6 +24,14 @@ describe('API', function() {
     });
 
     xit('should respond to a POST request to update a habit with a 200 status code', function (done){
+      var object = {habit_id: 1, habit: 'coding'};
+      request
+      .post('/api/updateHabit')
+      .send(object)
+      .expect(200, done);
+    });
+
+    xit('should respond to a POST request to delete a habit with a 200 status code', function (done){
       var object = {habit_id: 1, habit: 'coding'};
       request
       .post('/api/updateHabit')
@@ -46,7 +54,7 @@ describe('API', function() {
       .expect(200, done);
     });
 
-    it('Signup logs in a new user ', function (done){
+    xit('Signup logs in a new user ', function (done){
 
       var options = {
         'username': 'rachel',
@@ -69,7 +77,7 @@ describe('API', function() {
     'password': '123'
   };
 
-  it('should login existing users', function (done){
+  xit('should login existing users', function (done){
     request
     .post('/api/login')
     .send(options)
