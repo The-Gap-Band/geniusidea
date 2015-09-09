@@ -35,7 +35,7 @@ var Input = React.createClass ({ // component that creates input fields (ie. use
         data: data
       })
       .done(function(data) {
-        console.log('user successfully added!!!!')
+        console.log('user successfully added!')
         self.clearForm()
       })
       .fail(function(jqXhr) {
@@ -60,9 +60,9 @@ var Input = React.createClass ({ // component that creates input fields (ie. use
           <Input label="username:" valChange={this.newUsername} val={this.state.username}/>
           <Input label="password:" valChange={this.newPassword} val={this.state.password}/>
 
-          <button type="submit" onClick={function(){console.log('peaches and cream')}}>Sign Up</button>
+          <button type="submit" onClick={function(){}}>Sign Up</button>
         </form>
-        <button type="submit" onClick={function(){console.log('user wants to log in now')}}>Log in</button>
+        <button type="submit" onClick={function(){}}>Log in</button>
         </div>
       );
     }
