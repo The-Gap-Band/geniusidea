@@ -10,18 +10,59 @@
 </head>
 <body>
 
-  <h1>  
-    <img src="src/assets/habitude_logo.png" width="100" alt="reflectiv">
-    HABITUDE PROFILE PAGE
-  </h1>
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+              
+                  <a class="navbar-brand page-scroll" href="#page-top">
+                  <img src="src/assets/habitude_logo.png" width="32" alt="reflectiv"></a>
+              
+            </div>
 
-  <div id="navbar"></div>
-  <div id="picture"></div>
-  <div id="nameloc"></div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#home">Home</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#activityfeed">Activity Feed</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#explore">Explore</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/landing.html">Logout</a> <!--re routes user to the signin/login page-->
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 no-float" id="picture"></div>
+    <div class="col-md-9 no-float" id="adddisplayhab"></div>
+  </div>
+</div>
+
+  <!--<div id="nameloc"></div>
   <div id="mystats"></div>
   <div id="checkincurrenthab"></div> 
-  <div id="adddisplayhab"></div>
-  <div id="habprogress"></div>
+  <div id="habprogress"></div>-->
 
 
 
@@ -31,14 +72,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
 
   <script type="text/jsx" src="src/components/profilePicture.js"> </script>
-  <script type="text/jsx" src="src/components/profileNameLoc.js"></script>
-  <!-- // <script type="text/jsx" src="components/sample.js"></script> -->
-  <script type="text/jsx" src="src/components/profileMyStats.js"></script>
+  <!--<script type="text/jsx" src="src/components/profileNameLoc.js"></script>
+  <script type="text/jsx" src="src/components/sample.js"></script>-->
   <script type="text/jsx" src="src/components/profileAddDisplayHab.js"></script>
-  <!-- <script type="text/jsx" src="components/profileCheckInCurrentHab.js"></script> -->
-  <!-- // <script type="text/jsx" src="components/profileHabProgress.js"></script> -->
+  <!--<script type="text/jsx" src="src/components/profileMyStats.js"></script>
+  <script type="text/jsx" src="components/profileCheckInCurrentHab.js"></script>
+  <script type="text/jsx" src="components/profileHabProgress.js"></script>
 
-   <!-- <script type="text/jsx" src="components/testAjax.js"></script> -->
+  <script type="text/jsx" src="components/testAjax.js"></script> -->
 
 
 </body>

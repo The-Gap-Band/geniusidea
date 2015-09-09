@@ -1,11 +1,19 @@
+.profilepic {
+  border-radius: 100%;
+  /*margin-top: 40%;*/
+  display: block;
+  margin: auto;
+  width: 70%;
+
+}
 
 body {
-	background-color: #C2FFC2;
-	font-family: 'Yanone Kaffeesatz', sans-serif; 
+  background-color: #C2FFC2;
+  font-family: 'Yanone Kaffeesatz', sans-serif; 
 }
 div {
-	background-color: #AFE6AF;
-	font-family: 'Josefin Sans', sans-serif;	
+  background-color: #AFE6AF;
+  font-family: 'Josefin Sans', sans-serif;  
 }
 
 .counter {
@@ -31,4 +39,54 @@ div {
     color: darken(#8e44ad, 10%);
     font-weight: bold;
   }
+}
+
+/******************* CSS STYLES FOR BOOTSTRAPPING THE COLUMNS *******************/
+html,body,.container
+{
+    height:100%;
+}
+.container
+{
+    display:table;
+    width: 100%;
+    margin-top: -50px;
+    padding-top: 50px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+header
+{
+    background: green;
+    height: 50px;
+}
+
+.row
+{
+    height: 100%;
+    display: table-row;
+}
+.col-md-3.no-float, .col-md-9.no-float {
+    float: none; /* thanks baxabbit */
+}
+.col-md-3
+{
+    display: table-cell;
+    background: pink;
+    width: 25%;
+}
+.col-md-9
+{
+    display: table-cell;
+    background: yellow;
+    width: 75%;
+}
+
+/******************** PUSHES THE PAGE TITLE DOWN BELOW THE NAV BAR *******************/
+.landingPageSignUp {
+  margin-top: 10%;
+}
+
+#logninsignup {
+  margin-top: 10%;
 }

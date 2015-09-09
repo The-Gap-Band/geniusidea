@@ -18,6 +18,10 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(express.static(path.normalize(__dirname + '/client')));
 
+//TRYING TO HAVE LANDING PAGE ON SERVER
+app.get('/landing', function(req, res) {
+    res.sendFile(path.join(__dirname + '/client/landing.html'));
+});
 //========================================================//
 //   Calling the server                                   //
 //========================================================//

@@ -17,6 +17,6 @@ var ProfileMyStats = React.createClass({
     );
   }
 })
-
+// TODO: completed stats  are hard-coded, needs to be queried from the db where we store a user's already-completed habits
 React.render(<ProfileMyStats finishedHabits={["Get dunked on by Glenn","Beat Vy in arm wrestling"]}/>, document.getElementById("mystats"))
 
