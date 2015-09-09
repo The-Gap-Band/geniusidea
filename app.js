@@ -26,6 +26,7 @@ app.get('/landing', function(req, res) {
     res.sendFile(path.join(__dirname + '/client/landing.html'));
 });
 
+
 //========================================================//
 //   Calling the server                                   //
 //========================================================//
