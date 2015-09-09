@@ -34,6 +34,6 @@ var MenuExample = React.createClass({
 });
 // Render the menu component on the page, and pass an array with menu options
 React.render(
-    <MenuExample items={ ['Home', 'Activity Feed', 'Explore', 'About'] } />,
+    <MenuExample items={ ['Home', 'Activity Feed', 'Explore', 'About', 'LogOut'] } />,
     document.getElementById("navbar")
 );
