@@ -1,8 +1,8 @@
 .profilepic {
   border-radius: 100%;
-  /*margin-top: 40%;*/
-  display: block;
   margin: auto;
+  margin-top: 40%;
+  display: block;
   width: 70%;
 
 }
