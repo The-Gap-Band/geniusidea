@@ -41,9 +41,9 @@ describe('API', function() {
       };
 
       request
-        .post('/api/signup')
-        .send(options)
-        .expect(200, done);
+      .post('/api/signup')
+      .send(options)
+      .expect(200, done);
     });
 
     it('Signup logs in a new user ', function (done){
@@ -54,31 +54,33 @@ describe('API', function() {
       };
 
       request
-        .post('/api/signup')
-        .send(options)
-        .expect(302)
-        .end(function(err, res){
-          expect(res.header.location).to.equal('/profile');
-          done();
-        });
+      .post('/api/signup')
+      .send(options)
+      .expect(302)
+      .end(function(err, res){
+        expect(res.header.location).to.equal('/profile');
+        done();
+      });
     });
   });
   describe('Account Login: ', function (){
-     var options = {
-        'username': 'rachel',
-        'password': '123'
-      };
+   var options = {
+    'username': 'rachel',
+    'password': '123'
+  };
 
-    it('should login existing users', function (done){
-      request
-        .post('/api/login')
-        .send(options)
-        .end(function(err, res){
-          expect(res.header.location).to.equal('/profile');
-          done();
-        });
+  it('should login existing users', function (done){
+    request
+    .post('/api/login')
+    .send(options)
+    .end(function(err, res){
+      if(res.body.password === '123'){
+        expect(res.header.location).to.equal('/profile');
+      }
+      done();
     });
-  }); 
+  });
+}); 
 
-    
+
 });
