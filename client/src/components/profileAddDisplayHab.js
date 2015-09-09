@@ -1,12 +1,12 @@
 var Habit = React.createClass({ // 
   render: function() {
-  var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
+    var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
     return (
       <div className="habit">
-        <h2 className="user_id">{this.props.user_id}</h2>
-        <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
+      <h2 className="user_id">{this.props.user_id}</h2>
+      <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
       </div>
-    );
+      );
   }
 });
 
@@ -52,11 +52,11 @@ var ProfileAddDisplayHab = React.createClass({ // main component
   render: function() {
     return (
       <div className="habitBox">
-        <h1>Habit Tracker</h1>
-        <HabitList data={this.state.data} />
-        <HabitForm onHabitSubmit={this.handleHabitSubmit} />
+      <h1>Habit Tracker</h1>
+      <HabitList data={this.state.data} />
+      <HabitForm onHabitSubmit={this.handleHabitSubmit} />
       </div>
-    );
+      );
   }
 });
 
@@ -70,8 +70,6 @@ var HabitList = React.createClass({ // updates the habits db with new entry and 
       data: habit,
       dataType: 'json',
       success: function(data) {
-        console.log('new habit has been added!')
-        
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -80,20 +78,34 @@ var HabitList = React.createClass({ // updates the habits db with new entry and 
 
   },
 
+  deleteHabit: function(habit) {
+    $.ajax({
+      url: '/api/deleteHabit',
+      type: 'DELETE',
+      data: habit,
+      dataType: 'json',
+      success: function(data) {
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+
   render: function() {
 
-  var habitNodes = this.props.data.map(function(habit, index) {
-  if (habit.count === undefined) {
-    habit.count = 0;
-  }
-    return (
-      <table><tbody>
-      <tr><td>
+    var habitNodes = this.props.data.map(function(habit, index) {
+      if (habit.count === undefined) {
+        habit.count = 0;
+      }
+      return (
+        <table><tbody>
+        <tr><td>
         <button type="submit" formmethod="post" onClick={this.updateHabit.bind(this, habit)}>Check-in</button></td><td>
         <Habit user_id={habit.user_id} key={index}>
         {habit.habit+' '+(habit.count-1)} 
         </Habit></td>
-        <td><button type="button" className="btn btn-xs btn-danger" formmethod="post" onClick={function(){console.log('delete meeeeeeeeee!!!!!!')}}>DELETEME</button>
+        <td><button type="button" className="btn btn-xs btn-danger" formmethod="post" onClick={this.deleteHabit.bind(this, habit)}>DELETEME</button>
         </td></tr>
         </tbody></table>
         );
@@ -117,13 +129,13 @@ var HabitForm = React.createClass({ // form to enter new habits
 
   render: function() {
     return (
-    <form className="habitForm" onSubmit={this.handleSubmit}>
+      <form className="habitForm" onSubmit={this.handleSubmit}>
       <input type="text" placeholder="Enter text" ref="habit" />
       <input type="submit" value="Post" />
-    </form>
-    );
+      </form>
+      );
   }
 });
 
-React.render(<ProfileAddDisplayHab url={'/api/updateHabit'} pollInterval={2000} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
+React.render(<ProfileAddDisplayHab url={'/api/updateHabit'} pollInterval={500} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
 

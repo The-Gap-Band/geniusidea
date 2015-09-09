@@ -17,9 +17,11 @@ module.exports = function(app){
   //========================================================//
   // ALLOWS USER TO SIGNUP
   var newUser = function(req, res) {
+  // app.post('/api/signup', function(req, res){  
+    console.log('inside signup'); 
     var user = req.body.username;
     var password = req.body.password;
-    pg.connect(connectionString, function(err, client, done){
+    pg.connect(databaseURL, function(err, client, done){
       var query = client.query('INSERT INTO users(username, password) VALUES ($1, $2)', [user, password]);
       done();
       var rows = [];
@@ -38,6 +40,7 @@ module.exports = function(app){
 
     });
   }; 
+
 
   // SHOWS USER PROFILE
   app.get('/api/profile', function(req, res){
@@ -103,7 +106,6 @@ module.exports = function(app){
       });
       habitsQuery.on('end', function(result) {
         client.end();
-        console.log('POST has been sent');
         return res.json(rows);
       });
 
@@ -164,7 +166,38 @@ module.exports = function(app){
     });
   });
 
-  app.get('/api/dbtest_tables_exist', function(req, res) {
+  // var deleteHabit = function(req, res) {
+  app.delete('/api/deleteHabit', function(req, res){  
+    var habit = req.body.habit;
+    pg.connect(databaseURL, function(err, client, done){
+
+      var getIDQuery = "(SELECT DISTINCT habits.habit_id FROM habits " + 
+                       "WHERE habits.habit = '" + habit + "')";
+
+      var query = client.query(" DELETE FROM updates WHERE habit_id = " + getIDQuery + "; " + 
+                               " DELETE FROM habits WHERE habit_id = " + getIDQuery + "; ");
+
+      done();
+      var rows = [];
+
+      if(err){
+        return console.error('error inserting user', err);
+      }
+
+      query.on('row', function(row) {
+        rows.push(row);
+      });
+      query.on('end', function(result) {
+        client.end();
+        console.log('User should be deleted');
+        return res.json(rows);
+      });
+
+    });
+  });
+
+
+  app.get('/api/dbtestTablesExist', function(req, res) {
 
     pg.connect(databaseURL, function(err, client, done){
       var query = client.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_schema,table_name;");
