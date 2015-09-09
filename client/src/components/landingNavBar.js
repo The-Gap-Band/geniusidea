@@ -1,4 +1,4 @@
-var LandingNavBar = React.createClass({
+var LandingNavBar = React.createClass({ // component for landing page's nav bar
 
 
   render: function(){
@@ -52,8 +52,3 @@ var LandingNavBar = React.createClass({
 });
 
 React.render(<LandingNavBar />,document.getElementById('navbar'));
-                          // <li>
-                          //     <a className
-                          //     ="page-scroll" href="./login.html" onclick={this.login}>Login</a>
-                          // </li>
-                          // 

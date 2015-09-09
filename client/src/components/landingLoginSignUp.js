@@ -1,44 +1,4 @@
-// var LoginSignUp = React.createClass({
-// 	login: function(){
-// 		console.log('existing user LOG IN!!!!!!');
-// 	},
-// 	signUp: function(usernamePassword){
-// 		// checks db for exisiting username
-// 		// if username doesnt already exist, inserts new username into users table, and logs new user into their new account
-// 		// if username already exists, error message "user w that username already exists"
-// 		console.log('new user SIGN UP!!!!!!');
-//     console.log('usernamePassword is ****************',usernamePassword)
-// 		$.ajax({
-//       url: '/api/signup',
-//       dataType: 'json',
-//       type: 'POST',
-//       data: usernamePassword,
-//       success: function(data) {
-//         this.setState({data: data});
-//       }.bind(this),
-//       error: function(xhr, status, err) {
-//         console.error(this.props.url, status, err.toString());
-//       }.bind(this)
-//     });
-// 	},
-// 	render: function(){
-//     var that = this;
-// 		return (
-// 			<div className="landingPageSignUp">
-// 			<h1>LANDINGPAGE</h1><br/>
-// 		    Usersname: <input type="text" name="username"/><br/>
-// 		    Password: <input type="text" name="password"/><br/>
-// 		    <button type="button" onClick={this.login}>LOG IN</button>
-// 		    <button type="button" onClick={this.signUp.bind(null, that.usernamePassword)}>SIGN UP</button>
-// 		  </div>
-// 	  )
-// 	}
-// });
-// React.render(<LoginSignUp url={'/api/signup'}/>, document.getElementById('logninsignup'));
-
-
-/////////////////////////////////////////////////////////
-var BasicInputBox = React.createClass ({
+var Input = React.createClass ({ // component that creates input fields (ie. username and password)
   render: function (){
     return (
      <div>
@@ -53,24 +13,20 @@ var BasicInputBox = React.createClass ({
 
 
  
- var Contact = React.createClass({
-    getInitialState: function(){
+  var LandingLoginSignUp = React.createClass({
+    getInitialState: function(){ // initial state is null
       return {}
     },
     
     submit: function (e){
       var self
-      
       e.preventDefault()
       self = this
-
       console.log(this.state);
-
       var data = {
         username: this.state.username,
         password: this.state.password
       }
-
       // Submit form via jQuery/AJAX
       $.ajax({
         type: 'POST',
@@ -85,30 +41,24 @@ var BasicInputBox = React.createClass ({
       .fail(function(jqXhr) {
         console.log('failed to register');
       });
-
     },
-
-    clearForm: function() {
+    clearForm: function() { // clears the form after data has been submitted
       this.setState({
         username: "",
         password: ""
       });
     },
-
-    nameChange: function(e){
+    newUsername: function(e){ // sets the value of username as the input from the text field
       this.setState({username: e.target.value})
     },
-    
-    emailChange: function(e){
+    newPassword: function(e){ // sets the value of password as the input from the text field
      this.setState({password: e.target.value})
     },
-
-
     render: function(){
        return (
         <div><form onSubmit={this.submit} >
-          <BasicInputBox label="username:" valChange={this.nameChange} val={this.state.username}/>
-          <BasicInputBox label="password:" valChange={this.emailChange} val={this.state.password}/>
+          <Input label="username:" valChange={this.newUsername} val={this.state.username}/>
+          <Input label="password:" valChange={this.newPassword} val={this.state.password}/>
 
           <button type="submit" onClick={function(){console.log('peaches and cream')}}>Sign Up</button>
         </form>
@@ -118,4 +68,4 @@ var BasicInputBox = React.createClass ({
     }
 });
 
-React.render(<Contact url={'/api/signup'}/>, document.getElementById('logninsignup'));
+React.render(<LandingLoginSignUp url={'/api/signup'}/>, document.getElementById('logninsignup'));

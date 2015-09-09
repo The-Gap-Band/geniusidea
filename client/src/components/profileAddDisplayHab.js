@@ -1,4 +1,4 @@
-var Habit = React.createClass({
+var Habit = React.createClass({ // 
   render: function() {
   var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
     return (
@@ -10,7 +10,7 @@ var Habit = React.createClass({
   }
 });
 
-var ProfileAddDisplayHab = React.createClass({ //habit BOX
+var ProfileAddDisplayHab = React.createClass({ // main component
   loadHabitsFromServer: function() {
     $.ajax({
       url: this.props.url,
@@ -25,7 +25,7 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
     });
   },
 
-  handleHabitSubmit: function(habit) {
+  handleHabitSubmit: function(habit) { // this is fired from the render function on render function of this component
     var habits = this.state.data;
     var newHabits = habits.concat([habit]);
     this.setState({data: newHabits});
@@ -47,7 +47,7 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
   },
   componentDidMount: function() {
     this.loadHabitsFromServer();
-    setInterval(this.loadHabitsFromServer, this.props.pollInterval);
+    setInterval(this.loadHabitsFromServer, this.props.pollInterval); // retrieves habits from db on interval
   },
   render: function() {
     return (
@@ -60,7 +60,7 @@ var ProfileAddDisplayHab = React.createClass({ //habit BOX
   }
 });
 
-var HabitList = React.createClass({
+var HabitList = React.createClass({ // updates the habits db with new entry and maps over the entire list of habits and displays to page
 
   updateHabit: function(habit, update){
 
@@ -70,7 +70,7 @@ var HabitList = React.createClass({
       data: habit,
       dataType: 'json',
       success: function(data) {
-        
+        console.log('new habit has been added!')
         
       }.bind(this),
       error: function(xhr, status, err) {
@@ -104,7 +104,7 @@ var HabitList = React.createClass({
   }
 });
 
-var HabitForm = React.createClass({
+var HabitForm = React.createClass({ // form to enter new habits
   handleSubmit: function(e) {
     e.preventDefault();
     var habit = React.findDOMNode(this.refs.habit).value.trim();
