@@ -13,7 +13,7 @@ var Habit = React.createClass({ //
 var ProfileAddDisplayHab = React.createClass({ // main component
   loadHabitsFromServer: function() {
     $.ajax({
-      url: this.props.url,
+      url: '/api/getHabits',
       dataType: 'json',
       cache: false,
       success: function(data) {

@@ -50,24 +50,24 @@ var databaseURL = config.databaseURL;
   };
 
   // SHOWS EXISTING USER HABITS
-  exports.showHabits = function(req, res){
-   pg.connect(databaseURL, function(err, client, done){
-    var query = client.query('SELECT user_id, habit from habits');
-    var rows = []; // Array to hold values returned from database
+ //  exports.showHabits = function(req, res){
+ //   pg.connect(databaseURL, function(err, client, done){
+ //    var query = client.query('SELECT user_id, habit from habits');
+ //    var rows = []; // Array to hold values returned from database
     
-    if (err) {
-      return console.error('error running query', err);
-    }
-    query.on('row', function(row) {
-      rows.push(row);
-    });
-    query.on('end', function(result) {
-      client.end();
-      return res.json(rows);
+ //    if (err) {
+ //      return console.error('error running query', err);
+ //    }
+ //    query.on('row', function(row) {
+ //      rows.push(row);
+ //    });
+ //    query.on('end', function(result) {
+ //      client.end();
+ //      return res.json(rows);
 
-    });
-  }); 
- };
+ //    });
+ //  }); 
+ // };
 
   // USER CREATES A NEW HABIT and inserts a null timestamp in updates table
   exports.addHabit = function(req, res){
@@ -102,9 +102,9 @@ var databaseURL = config.databaseURL;
     });
 };
 
-  GET USER UPDATES TIMES AND FREQUENCY 
+  // GET USER UPDATES TIMES AND FREQUENCY 
 
-  app.get('/api/updateHabit', function(req, res){
+  exports.getHabits = function(req, res){
     // Returns a JSON object with all habits and a count of how many times they occur
     // Example: [{"habit":"trapping","count":"2"},{"habit":"biking","count":"9"}]
     // CURL COMMAND: curl -i localhost:3000/api/updateHabit
@@ -127,10 +127,10 @@ var databaseURL = config.databaseURL;
         return res.json(rows);
       });
     });
-  });
+  };
 
-  // USER UPDATES HABITS
-  app.post('/api/updateHabit', function(req, res){
+  // // USER UPDATES HABITS
+  exports.updateHabit = function(req, res){
     var habit = req.body.habit;
     pg.connect(databaseURL, function(err, client, done){
       // Posts an update to the 'updates' table where the habit_id matches that of the input habit string
@@ -154,10 +154,9 @@ var databaseURL = config.databaseURL;
         return res.json(rows);
       });
     });
-  });
+  };
 
-  // var deleteHabit = function(req, res) {
-  app.delete('/api/deleteHabit', function(req, res){  
+  exports.deleteHabit = function(req, res){  
     var habit = req.body.habit;
     pg.connect(databaseURL, function(err, client, done){
 
@@ -184,26 +183,26 @@ var databaseURL = config.databaseURL;
       });
 
     });
-  });
+  };
 
 
-  app.get('/api/dbtestTablesExist', function(req, res) {
+  // app.get('/api/dbtestTablesExist', function(req, res) {
 
-    pg.connect(databaseURL, function(err, client, done){
-      var query = client.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_schema,table_name;");
-      var rows = []; 
-      if (err) {
-        return console.error('error running query', err);
-      }
-      query.on('row', function(row) {
-        rows.push(row);
-      });
+  //   pg.connect(databaseURL, function(err, client, done){
+  //     var query = client.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_schema,table_name;");
+  //     var rows = []; 
+  //     if (err) {
+  //       return console.error('error running query', err);
+  //     }
+  //     query.on('row', function(row) {
+  //       rows.push(row);
+  //     });
 
-      query.on('end', function(result) {
-        client.end();
-        return res.json(rows);
-      });
-    });
-  });
+  //     query.on('end', function(result) {
+  //       client.end();
+  //       return res.json(rows);
+  //     });
+  //   });
+  // });
 
 

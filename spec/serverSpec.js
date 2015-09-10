@@ -15,7 +15,7 @@ describe('API', function() {
       .expect(200, done);
     });
 
-    it('should respond to a POST request to add a habit with a 200 status code', function (done){
+    xit('should respond to a POST request to add a habit with a 200 status code', function (done){
       var object = {habit: 'call_mom'};
       request
       .post('/api/habits')
@@ -71,24 +71,48 @@ describe('API', function() {
       });
     });
   });
+
   describe('Account Login: ', function (){
    var options = {
     'username': 'rachel',
     'password': '123'
   };
 
-  xit('should login existing users', function (done){
-    request
-    .post('/api/login')
-    .send(options)
-    .end(function(err, res){
-      if(res.body.password === '123'){
-        expect(res.header.location).to.equal('/profile');
-      }
-      done();
+    xit('should login existing users', function (done){
+      request
+      .post('/api/login')
+      .send(options)
+      .end(function(err, res){
+        if(res.body.password === '123'){
+          expect(res.header.location).to.equal('/profile');
+        }
+        done();
+      });
     });
   });
-}); 
+
+  describe('Habits', function (){
+    var object = {habit_id: 1, habit: 'coding'};
+
+    xit('should allow users to add habits', function (done){
+      request
+      .post('/api/habits')
+      .send(object)
+      .end(function (err, res){
+        if(res.body.habit === 'coding'){
+          expect(200);
+        }
+        done();
+      });
+    });
+
+    it('should allow users to update habits', function (done){
+      request
+      .post('/api/updateHabit')
+      .send(object)
+      .expect(200, done);
+    });
+  }); 
 
 
 });
