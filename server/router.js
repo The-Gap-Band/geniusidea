@@ -17,19 +17,8 @@ module.exports = function(app){
       }
     };
   });
-/* DO NOT UNCOMMENT. FUNCTION HASNT BEEN TESTED. WILD WILD WEST*/
-  // app.post('/api/login', function(req, res){
-  //   findUser(req, res);
-  //   if(!user){
-  //     res.redirect('/login');
-  //   } else {
-  //     user.comparePassword(req, res);
-  //     if(!err){
-  //       res.redirect(302, '/profile');
-  //     } else {
-  //       res.redirect('/login');
-  //     }
-  //   }
-  // });
+  app.post('/api/login', function(req, res){
+    findUser(req, res);
+  });
 
 };
