@@ -36,6 +36,7 @@ var Input = React.createClass ({ // component that creates input fields (ie. use
       })
       .done(function(data) {
         console.log('user successfully added!')
+        window.location.href = '/profile.html';
         self.clearForm()
       })
       .fail(function(jqXhr) {
