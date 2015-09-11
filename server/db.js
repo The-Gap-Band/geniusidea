@@ -16,8 +16,8 @@ module.exports = function(app){
   //   Database Queries                                     //
   //========================================================//
   // ALLOWS USER TO SIGNUP
-  var newUser = function(req, res) {
-  // app.post('/api/signup', function(req, res){  
+  // var newUser = function(req, res) {
+  app.post('/api/signup', function(req, res){  
     console.log('inside signup'); 
     var user = req.body.username;
     var password = req.body.password;
@@ -39,7 +39,7 @@ module.exports = function(app){
       });
 
     });
-  }; 
+  }); 
 
 
   // SHOWS USER PROFILE
@@ -201,6 +201,25 @@ module.exports = function(app){
 
     pg.connect(databaseURL, function(err, client, done){
       var query = client.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_schema,table_name;");
+      var rows = []; 
+      if (err) {
+        return console.error('error running query', err);
+      }
+      query.on('row', function(row) {
+        rows.push(row);
+      });
+
+      query.on('end', function(result) {
+        client.end();
+        return res.json(rows);
+      });
+    });
+  });
+
+//VY AND GLENNs DB request for name and location
+  app.get('/api/nameAndLoc', function(req, res) {
+    pg.connect(databaseURL, function(err, client, done){      
+      var query = client.query("SELECT location,username FROM users WHERE user_id = 3;")
       var rows = []; 
       if (err) {
         return console.error('error running query', err);
