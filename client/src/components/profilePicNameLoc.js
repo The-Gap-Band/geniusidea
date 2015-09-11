@@ -1,5 +1,5 @@
 var ProfilePicture = React.createClass({
-	  getInitialState: function(){ // MAKE SURE TO SET INITIAL STATE TO INCLUDE THE PARAMS OF THE ITEMS YOU NEED FROM THE DB-RETURN-OBJECT DUH
+	  getInitialState: function(){ // SET INITIAL STATE TO INCLUDE THE PARAMS OF THE ITEMS YOU NEED FROM THE DB-RETURN-OBJECT 
     return {username: '',location: ''}
   }, 
   
@@ -10,7 +10,7 @@ var ProfilePicture = React.createClass({
         type: 'GET',
         url: '/api/nameAndLoc', /* NEEDS THE GET REQUEST FOR USERNAME AND LOCATION */
         dataType: 'json',
-        success: function(data) { // After the query has return the object, set the state's parameters to equal the values needed from the db-query-object
+        success: function(data) { // After the query has returned the object, set the state's keys and values to equal the values needed from the db-query-object VERY IMPORTANT
           this.setState({
             username: data[0].username, 
             location: data[0].location
@@ -34,7 +34,7 @@ var ProfilePicture = React.createClass({
 	}
 })
 // TODO: photo needs to be queried from db of users'profile photos
-React.render(<ProfilePicture/>, document.getElementById("picture"))
+React.render(<ProfilePicture/>, document.getElementById("picnameloc"))
 
 
 
