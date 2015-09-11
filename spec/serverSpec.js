@@ -9,7 +9,7 @@ request = request('localhost:3000');
 
 describe('API', function() {
   describe('handle http requests from client', function() {
-    xit('should respond to a GET request for a user profile with 200 status code', function (done){
+    xit('should respond to a GET request for profile page with a 200 status code', function (done){
       request
       .get('/')
       .expect(200, done);
@@ -24,6 +24,14 @@ describe('API', function() {
     });
 
     xit('should respond to a POST request to update a habit with a 200 status code', function (done){
+      var object = {habit_id: 1, habit: 'coding'};
+      request
+      .post('/api/updateHabit')
+      .send(object)
+      .expect(200, done);
+    });
+
+    xit('should respond to a POST request to delete a habit with a 200 status code', function (done){
       var object = {habit_id: 1, habit: 'coding'};
       request
       .post('/api/updateHabit')
@@ -46,7 +54,7 @@ describe('API', function() {
       .expect(200, done);
     });
 
-    it('Signup logs in a new user ', function (done){
+    xit('Signup logs in a new user ', function (done){
 
       var options = {
         'username': 'rachel',
@@ -63,24 +71,48 @@ describe('API', function() {
       });
     });
   });
+
   describe('Account Login: ', function (){
    var options = {
     'username': 'rachel',
     'password': '123'
   };
 
-  it('should login existing users', function (done){
-    request
-    .post('/api/login')
-    .send(options)
-    .end(function(err, res){
-      if(res.body.password === '123'){
-        expect(res.header.location).to.equal('/profile');
-      }
-      done();
+    xit('should login existing users', function (done){
+      request
+      .post('/api/login')
+      .send(options)
+      .end(function(err, res){
+        if(res.body.password === '123'){
+          expect(res.header.location).to.equal('/profile');
+        }
+        done();
+      });
     });
   });
-}); 
+
+  describe('Habits', function (){
+    var object = {habit_id: 1, habit: 'coding'};
+
+    xit('should allow users to add habits', function (done){
+      request
+      .post('/api/habits')
+      .send(object)
+      .end(function (err, res){
+        if(res.body.habit === 'coding'){
+          expect(200);
+        }
+        done();
+      });
+    });
+
+    it('should allow users to update habits', function (done){
+      request
+      .post('/api/updateHabit')
+      .send(object)
+      .expect(200, done);
+    });
+  }); 
 
 
 });
