@@ -19,7 +19,7 @@ var ProfileNameLoc = React.createClass({
   }, 
   loadUserInfoFromServer: function(){
     
-  }, //moved ajax call into componentDidMoutn function
+  }, //moved ajax call into componentDidMount function
   componentDidMount: function(x,y,z) {
     // this.loadUserInfoFromServer();
     var foo;
@@ -47,6 +47,7 @@ var ProfileNameLoc = React.createClass({
     
     console.log('what is your mentalmodel of state?',this.state)
   
+  // Because of the sequence of function calls (first render, then componentDidMoutn, then render again) at first, this.state is empty until the AJAX GET is called, the following lock the value of this.state.data to the variables loca and name IF it exists at all; So the values from the AJAX GET will be caught/bound to these unchanging variables and assigned to the this.props.info object
     if (this.state.data[0]){ var loca = this.state.data[0].location; this.props.info['location']=loca}
     if (this.state.data[0]){ var name = this.state.data[0].username; this.props.info['username']=name}
     console.log('THIS PROPS INFO',this.props.info);
@@ -58,6 +59,6 @@ var ProfileNameLoc = React.createClass({
         </div>)
   }
 })
-// TODO: name and location needs to be queried form the db
+
 React.render(<ProfileNameLoc info={{}}/>, document.getElementById("nameloc"))
 
