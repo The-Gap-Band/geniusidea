@@ -15,7 +15,7 @@
 ////////////////////////////
 var ProfileNameLoc = React.createClass({
   getInitialState: function(){
-    return {}
+    return {data: ''}
   }, 
   loadUserInfoFromServer: function(){
     
@@ -30,10 +30,11 @@ var ProfileNameLoc = React.createClass({
         success: function(data) {
           
           this.setState({data:data})
-          console.log('this.state.data[0].location: ',this.state.data[0].location)
-         this.props.info = this.state.data[0].location;
-          console.log('this props info',this.props.info)
-        }.bind(this, this.render),
+          // console.log('this.state.data[0].location: ',this.state.data[0].location)
+         // this.props.info = this.state.data[0].location;
+          console.log('THE DATA : ',data)
+          this.props.info = data;
+        }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
           console.log('failed to retrieve username and location from db :( ');
@@ -46,12 +47,15 @@ var ProfileNameLoc = React.createClass({
 
   render: function(state){
     
-    // console.log('what is your mentalmodel of state?',this.state)
-  console.log('wtf is this shit',this.props.info)
+    console.log('what is your mentalmodel of state?',this.state)
+  // console.log('wtf is this shit .props',this.props)
+  if (this.state.data[0]){ var loca = this.state.data[0].location;}
+  console.log('ESTA LOCA',loca)
+  this.props.info = loca;
     return (
       <div>
-        <p>NAME: {this.props.info}</p>
-        <p>LOCATION: {}</p>
+        <p>NAME: {}</p>
+        <p>LOCATION: {this.props.info}</p>
       </div>)
   }
 })
