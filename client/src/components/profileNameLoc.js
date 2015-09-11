@@ -33,30 +33,29 @@ var ProfileNameLoc = React.createClass({
           // console.log('this.state.data[0].location: ',this.state.data[0].location)
          // this.props.info = this.state.data[0].location;
           console.log('THE DATA : ',data)
-          this.props.info = data;
+          
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
           console.log('failed to retrieve username and location from db :( ');
         }.bind(this)
     })
-    // var foo = this.state.data[0].location;
-    // console.log('fooooooo',foo)
   },
 
 
   render: function(state){
     
     console.log('what is your mentalmodel of state?',this.state)
-  // console.log('wtf is this shit .props',this.props)
-  if (this.state.data[0]){ var loca = this.state.data[0].location;}
-  console.log('ESTA LOCA',loca)
-  this.props.info = loca;
-    return (
-      <div>
-        <p>NAME: {}</p>
-        <p>LOCATION: {this.props.info}</p>
-      </div>)
+  
+    if (this.state.data[0]){ var loca = this.state.data[0].location; this.props.info.push(loca)}
+    if (this.state.data[0]){ var name = this.state.data[0].username; this.props.info.push(name)}
+    console.log('THIS PROPS INFO',this.props.info)
+    // this.props.info = loca;
+      return (
+        <div>
+          <p>NAME: {this.props.info[1]}</p>
+          <p>LOCATION: {this.props.info[0]}</p>
+        </div>)
   }
 })
 // TODO: name and location needs to be queried form the db

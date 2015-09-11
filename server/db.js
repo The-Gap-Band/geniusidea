@@ -219,7 +219,7 @@ module.exports = function(app){
 //VY AND GLENNs DB request for name and location
   app.get('/api/nameAndLoc', function(req, res) {
     pg.connect(databaseURL, function(err, client, done){      
-      var query = client.query("SELECT location,username FROM users WHERE user_id = 3;")
+      var query = client.query("SELECT location,username FROM users WHERE user_id = 4;")
       var rows = []; 
       if (err) {
         return console.error('error running query', err);
