@@ -47,17 +47,17 @@ var ProfileNameLoc = React.createClass({
     
     console.log('what is your mentalmodel of state?',this.state)
   
-    if (this.state.data[0]){ var loca = this.state.data[0].location; this.props.info.push(loca)}
-    if (this.state.data[0]){ var name = this.state.data[0].username; this.props.info.push(name)}
-    console.log('THIS PROPS INFO',this.props.info)
+    if (this.state.data[0]){ var loca = this.state.data[0].location; this.props.info['location']=loca}
+    if (this.state.data[0]){ var name = this.state.data[0].username; this.props.info['username']=name}
+    console.log('THIS PROPS INFO',this.props.info);
     // this.props.info = loca;
       return (
         <div>
-          <p>NAME: {this.props.info[1]}</p>
-          <p>LOCATION: {this.props.info[0]}</p>
+          <p>NAME: {this.props.info['username']}</p>
+          <p>LOCATION: {this.props.info['location']}</p>
         </div>)
   }
 })
 // TODO: name and location needs to be queried form the db
-React.render(<ProfileNameLoc info={[]}/>, document.getElementById("nameloc"))
+React.render(<ProfileNameLoc info={{}}/>, document.getElementById("nameloc"))
 
