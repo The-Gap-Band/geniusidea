@@ -6,7 +6,7 @@ var ProfileHabProgress = React.createClass({
   },
 
   componentDidMount: function() {
-    $.get(this.props.habitudes, function(result) {
+    $.get(this.props.url, function(result) {
       this.setState({hab : result}); // setting the current state to the result of the db-query
     }.bind(this));
   },
@@ -34,7 +34,7 @@ var ProfileHabProgress = React.createClass({
   }
 })
 
-React.render(<ProfileHabProgress habitudesInProgress={[]} habitudes={'http://localhost:3000/api/habits'} />, document.getElementById("habprogress"))
+React.render(<ProfileHabProgress habitudesInProgress={[]} url={'/api/habits'} />, document.getElementById("habprogress"))
 
 
 

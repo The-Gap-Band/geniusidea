@@ -25,6 +25,7 @@
     "browserify": "^11.0.1",
     "chai": "^3.2.0",
     "express": "^4.13.3",
+    "express-session": "^1.11.3",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.2.0",
