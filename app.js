@@ -3,11 +3,11 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var route = require('./server/router.js');
 var bodyParser = require('body-parser');
 var port = process.env.PORT || '3000';
-// var route = require('./server/router.js')(app);
-// var session = require('express-session'); //requiring session
-var db = require('./server/db.js')(app);
+
+var db = require('./server/db.js');
 
 //========================================================//
 //   connecting the client and server                     //
@@ -20,12 +20,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 //========================================================//
 app.use(express.static(path.normalize(__dirname + '/client')));
 
-// app.use(session({ //
-//   secret: 'shhh, it\'s a secret',
-//   resave: false,
-//   saveUninitialized: true
-// }));
-
+route(app);
 
 //========================================================//
 //   Calling the server                                   //
