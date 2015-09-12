@@ -7,7 +7,10 @@ var databaseURL = config.databaseURL;
   //   Database Queries                                     //
   //========================================================//
   // ALLOWS USER TO SIGNUP
-  exports.newUser = function(req, res) {
+
+  // var newUser = function(req, res) {
+  app.post('/api/signup', function(req, res){  
+    console.log('inside signup'); 
     var user = req.body.username;
     var password = req.body.password;
     pg.connect(databaseURL, function(err, client, done){
@@ -28,7 +31,7 @@ var databaseURL = config.databaseURL;
       });
 
     });
-  }; 
+  }); 
 
 
   // SHOWS USER PROFILE
@@ -205,4 +208,26 @@ var databaseURL = config.databaseURL;
   //   });
   // });
 
+
+
+
+//VY AND GLENNs DB request for name and location
+  app.get('/api/nameAndLoc', function(req, res) {
+    pg.connect(databaseURL, function(err, client, done){      
+      var query = client.query("SELECT location,username FROM users WHERE user_id = 4;")
+      var rows = []; 
+      if (err) {
+        return console.error('error running query', err);
+      }
+      query.on('row', function(row) {
+        rows.push(row);
+      });
+
+      query.on('end', function(result) {
+        client.end();
+        return res.json(rows);
+      });
+    });
+  });
+};
 

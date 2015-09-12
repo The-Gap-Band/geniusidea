@@ -101,7 +101,7 @@ var HabitList = React.createClass({ // updates the habits db with new entry and 
       return (
         <table><tbody>
         <tr><td>
-        <button type="submit" formmethod="post" onClick={this.updateHabit.bind(this, habit)}>Check-in</button></td><td>
+        <button type="submit" formMethod="post" onClick={this.updateHabit.bind(this, habit)}>Check-in</button></td><td>
         <Habit user_id={habit.user_id} key={index}>
         {habit.habit+' '+(habit.count-1)} 
         </Habit></td>
@@ -131,11 +131,20 @@ var HabitForm = React.createClass({ // form to enter new habits
     return (
       <form className="habitForm" onSubmit={this.handleSubmit}>
       <input type="text" placeholder="Enter text" ref="habit" />
+      <div>
+        <select name="Categories">
+        <option value="null">Please select a category for your new Habitude</option>
+          <option value="Health">Health</option>
+          <option value="Fitness">Fitness</option>
+          <option value="Addiction">Addiction</option>
+          <option value="Overall Cool Catness">Overall Cool Catness</option>
+        </select>
+      </div>
       <input type="submit" value="Post" />
       </form>
       );
   }
 });
 
-React.render(<ProfileAddDisplayHab url={'/api/updateHabit'} pollInterval={500} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
+React.render(<ProfileAddDisplayHab url={'/api/updateHabit'} pollInterval={500} categories={['Fitness', 'Education', 'Addiction', 'Overall Cool Catness']} habitsObj={{}}/>, document.getElementById("adddisplayhab"));
 
