@@ -27,7 +27,7 @@ var ProfilePicture = React.createClass({
 		return (
 			<div>
         <img className="profilepic" src={'http://40.media.tumblr.com/tumblr_makm5yaqVk1r8b83ro1_500.jpg'} />
-        <p>NAME: {this.state.username}</p>
+        <p>Hello, {this.state.username}!</p>
         <p>LOCATION: {this.state.location}</p>
       </div>
     ) // pulls the image for user's profile
